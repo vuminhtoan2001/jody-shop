@@ -1,7 +1,9 @@
 import './GlobalStyles.scss';
+import './Grid.scss';
+import './Responsive.scss';
 
-function GlobalStyles ({children}) {
+function GlobalStyles({ children }) {
     return children;
 }
 
-export default GlobalStyles
+export default GlobalStyles;

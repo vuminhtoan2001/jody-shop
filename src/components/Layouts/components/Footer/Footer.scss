@@ -1,0 +1,125 @@
+.footer {
+    margin-top: 50px;
+    padding-top: 50px;
+    background-color: #1e1c56;
+    color: var(--white-color);
+}
+.footer-top {
+    margin-bottom: 15px;
+}
+
+.footer .logo {
+    display: none;
+}
+
+.footer-motto {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    line-height: 22px;
+}
+
+.footer__title {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.footer__form {
+    padding: 0 10px;
+    margin-bottom: 30px;
+}
+.subcribe-form {
+    /* border: 1px solid var(--white-color); */
+    border-radius: 4px;
+    /* padding: 0 10px; */
+}
+.subcribe-form__btn {
+    border: none;
+    outline: none;
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+}
+.subcribe-form__btn:hover {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+.subcribe-form__input {
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: var(--white-color);
+    outline: none;
+    border: none;
+    font-size: 1.6rem;
+    border: 1px solid var(--white-color);
+    border-radius: 4px 0 0 4px;
+}
+.subcribe-form__input::placeholder {
+    color: var(--white-color);
+}
+.footer-social {
+    margin-bottom: 30px;
+}
+.footer-social__link {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 40px;
+    height: 40px;
+    transition: all 0.5s;
+}
+.footer__title.active + ul {
+    display: none;
+}
+.footer-social__link:hover {
+    transform: rotate(30deg);
+}
+.footer__list-menu {
+    margin-bottom: 30px;
+}
+.footer__item-menu {
+    font-size: 1.4rem;
+    line-height: 28px;
+}
+
+.footer__item-menu a {
+    color: var(--white-color);
+    font-weight: 300;
+    display: inline-block;
+}
+
+.footer__item-menu a:hover {
+    color: var(--primary-color);
+}
+
+.footer__item-menu-img {
+    position: relative;
+    top: 50%;
+    left: 46%;
+    transform: translateY(-50%);
+}
+.bct {
+    padding-left: 20px;
+}
+
+.footer__item-menu-text {
+    line-height: 22px;
+}
+.footer_company .footer__item-menu {
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+}
+.footer_company .footer__item-menu:last-child .footer__item-menu-img {
+    top: 35%;
+}
+.footer-copy-right {
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer-copy-right a {
+    color: var(--primary-color);
+}
