@@ -1,13 +1,20 @@
-// import className from 'classnames/bind';
-// import Styles from './Header.module.scss';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import Tippy from '@tippyjs/react';
 
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+import SearchProductItem from '~/components/SearchProductItem';
 import './Header.scss';
 import imgs from '~/assets/imgs';
-// const cx = className.bind(Styles);
 
 function Header() {
+    const [searchResult, setSearchResult] = useState([]);
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchResult([]);
+        }, 0);
+    });
     return (
         <header className="header">
             <div className="topbar">
@@ -273,10 +280,25 @@ function Header() {
                     </ul>
                 </div>
                 <div className="header-nav__right">
-                    <form action className="header-search">
-                        <input type="text" className="input-search" placeholder="Tìm sản phẩm" />
-                        <button type="submit" className="btn-search" />
-                    </form>
+                    <Tippy
+                        interactive
+                        visible={searchResult.length > 0}
+                        placement="bottom"
+                        render={(attrs) => (
+                            <PopperWrapper>
+                                <div className="box" tabIndex="-1" {...attrs}>
+                                    <SearchProductItem />
+                                    <SearchProductItem />
+                                    <SearchProductItem />
+                                </div>
+                            </PopperWrapper>
+                        )}
+                    >
+                        <form className="header-search">
+                            <input type="text" className="input-search" placeholder="Tìm sản phẩm" />
+                            <button type="submit" className="btn-search" />
+                        </form>
+                    </Tippy>
                     <div className="header-tool">
                         <div className="user user-hover hide-on-mobile-tablet">
                             <a href="login.html" className="user_login">

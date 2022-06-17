@@ -214,7 +214,7 @@ body.hidden {
     height: 36px;
     margin-right: 35px;
     flex: 1;
-    max-width: 390px;
+    max-width: var(--max-width-header-search);
     display: flex;
     align-items: center;
     padding-left: 15px;

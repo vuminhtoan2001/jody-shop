@@ -34,6 +34,7 @@ img {
  --height-topbar: 104px;
  --height-topbar_banner: 80px;
  --height-header_navbar: calc(var(--height-header) - var(--height-topbar));
+ --max-width-header-search: 390px;
  --width-nav-mobile: 330px;
  --height-nav-mobile: 60px;
 }
