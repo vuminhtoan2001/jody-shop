@@ -7,7 +7,7 @@ function DefaultLayout({ children }) {
     return (
         <Fragment>
             <Header />
-
+            {children}
             <Footer />
         </Fragment>
     );

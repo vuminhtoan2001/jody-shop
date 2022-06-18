@@ -1,12 +1,60 @@
-@import 'normalize.css';
+// @import 'normalize.css';
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+// font svn-gilroy
+
+// =================================================================
+@font-face {
+	font-family: svn-gilroy;
+	font-style: normal;
+	font-weight: 400;
+	src: url(//assets/fonts/svn-gilroy_regular.ttf);
+}
+
+
+@font-face {
+	font-family: svn-gilroy;
+	font-style: normal;
+	font-display: swap;
+	font-weight: 500;
+	src: url(/assets/fonts/svn-gilroy_medium.ttf);
+}
+@font-face {
+	font-family: svn-gilroy med;
+	font-style: normal;
+	font-display: swap;
+	font-weight: 600;
+	src: url(/assets/fonts/svn-gilroy_med.ttf);
+}
+@font-face {
+	font-family: svn-gilroy semi;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url(//bizweb.dktcdn.net/100/438/408/themes/863105/assets/svn-gilroy_semibold.ttf?1655519530903);
+}
+@font-face {
+	font-family: svn-gilroy bold;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url(//assets/fonts/svn-gilroy_semibold.ttf);
+}
+@font-face {
+	font-family: svn-gilroy;
+	font-display: swap;
+	src: url(/assets/fonts/svn-gilroy_semibold.ttf);
+	font-weight: 700;
+}
+
+// =================================================================
+
+
+// Base css
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 ol,
@@ -21,7 +69,6 @@ img {
   max-width: 100%;
   height: auto;
 }
-
 
 :root {
  /* Color */
@@ -41,6 +88,7 @@ img {
 
 html {
   font-size: 62.5%;
+  font-family: 'svn-gilroy', sans-serif;
 }
 
 body {

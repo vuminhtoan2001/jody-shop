@@ -6,6 +6,7 @@ const imgs = {
     user: require('./user.svg').default,
     heart: require('./heart.svg').default,
     cart: require('./cart.svg').default,
+    aopolo_nu_vang: require('./aopolo_nu_vang.jpg'),
 };
 
 export default imgs;

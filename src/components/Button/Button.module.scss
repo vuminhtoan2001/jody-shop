@@ -1,0 +1,23 @@
+.base-btn{
+    height: 46px;
+    line-height: 46px;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.4rem;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover{
+        background-color: var(--white-color);
+        color: var(--primary-color);
+        font-weight: 600;
+        border: 2px solid var(--primary-color);
+    }
+}
+
+.primary{
+    width: 100%;
+    font-size: 1.8rem;
+}

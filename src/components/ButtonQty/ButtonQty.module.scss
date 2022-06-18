@@ -1,0 +1,37 @@
+.qty-btn-group {
+    position: relative;
+    width: 50%;
+    display: flex;
+    color: var(--text-color);
+  }
+
+  .qty-minus {
+    border-radius: 13px 0 0 13px;
+    border: 1px solid #7a7a9d;
+    height: 26px;
+    width: 32px;
+    background-color: var(--white-color);
+    float: left;
+    cursor: pointer;
+  }
+
+  .qty-number {
+    outline: none;
+    border: 1px solid #7a7a9d;
+    border-left: none;
+    border-right: none;
+    width: 35px;
+    height: 26px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .qty-plus {
+    border-radius: 0px 13px 13px 0px;
+    border: 1px solid #7a7a9d;
+    height: 26px;
+    width: 32px;
+    background-color: var(--white-color);
+    float: right;
+    cursor: pointer;
+  }

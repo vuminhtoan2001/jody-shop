@@ -3,18 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import SearchProductItem from '~/components/SearchProductItem';
+import Button from '~/components/Button';
+import ButtonQty from '~/components/ButtonQty';
+import Search from '~/components/Layouts/components/Search';
 import './Header.scss';
 import imgs from '~/assets/imgs';
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    });
+    const currentUser = true;
     return (
         <header className="header">
             <div className="topbar">
@@ -280,42 +276,38 @@ function Header() {
                     </ul>
                 </div>
                 <div className="header-nav__right">
-                    <Tippy
-                        interactive
-                        visible={searchResult.length > 0}
-                        placement="bottom"
-                        render={(attrs) => (
-                            <PopperWrapper>
-                                <div className="box" tabIndex="-1" {...attrs}>
-                                    <SearchProductItem />
-                                    <SearchProductItem />
-                                    <SearchProductItem />
-                                </div>
-                            </PopperWrapper>
-                        )}
-                    >
-                        <form className="header-search">
-                            <input type="text" className="input-search" placeholder="Tìm sản phẩm" />
-                            <button type="submit" className="btn-search" />
-                        </form>
-                    </Tippy>
+                    {/* Search here */}
+                    <Search />
                     <div className="header-tool">
                         <div className="user user-hover hide-on-mobile-tablet">
                             <a href="login.html" className="user_login">
                                 <img src={imgs.user} alt="" />
                             </a>
-                            <ul className="user-list">
-                                <li className="user-list__item">
-                                    <a href="register.html" className="user-list__item-link">
-                                        Đăng ký
-                                    </a>
-                                </li>
-                                <li className="user-list__item">
-                                    <a href className="user-list__item-link">
-                                        Đăng nhập
-                                    </a>
-                                </li>
-                            </ul>
+                            {currentUser ? (
+                                <ul className="user-list">
+                                    <li className="user-list__item">
+                                        <p className="user-name">Vũ Minh Toán</p>
+                                    </li>
+                                    <li className="user-list__item">
+                                        <a href className="user-list__item-link">
+                                            Đăng xuất
+                                        </a>
+                                    </li>
+                                </ul>
+                            ) : (
+                                <ul className="user-list">
+                                    <li className="user-list__item">
+                                        <a href="register.html" className="user-list__item-link">
+                                            Đăng ký
+                                        </a>
+                                    </li>
+                                    <li className="user-list__item">
+                                        <a href className="user-list__item-link">
+                                            Đăng nhập
+                                        </a>
+                                    </li>
+                                </ul>
+                            )}
                         </div>
                         <div className="wishlist-header hide-on-mobile-tablet">
                             <a href="wishlist.html" className="wishlist-header__icon">
@@ -339,7 +331,7 @@ function Header() {
                                 <div className="top-cart-content__body edit-scrollbar">
                                     <div className="cart-body-row">
                                         <a className="cart-body-row__img" href>
-                                            <img src="./assets/img/polo_nu.jpg" alt="" />
+                                            <img src={imgs.aopolo_nu_vang} alt="" />
                                         </a>
                                         <div className="cart-body-row__info">
                                             <div className="cart-body-row__info__name">
@@ -351,89 +343,7 @@ function Header() {
                                                 <a href className="cart-btn-remove" />
                                             </div>
                                             <div className="cart-body-row__info__quality">
-                                                <div className="qty-group-btn">
-                                                    <button className="qty-minus"> - </button>
-                                                    <input type="text" className="qty-number" defaultValue={1} />
-                                                    <button className="qty-plus"> + </button>
-                                                </div>
-                                                <div className="price-total">
-                                                    <span className="price-total__text">Tổng cộng:</span>
-                                                    <span className="cart-price">299.000đ</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="cart-body-row">
-                                        <a className="cart-body-row__img" href>
-                                            <img src="./assets/img/polo_nu.jpg" alt="" />
-                                        </a>
-                                        <div className="cart-body-row__info">
-                                            <div className="cart-body-row__info__name">
-                                                <a href className="cart-product-name">
-                                                    Áo Polo nữ cafe phối nét đẹp siêu nhẹ siêu mát đẹp siêu nhẹ siêu mát
-                                                </a>
-                                                <span className="cart-price">299.000đ</span>
-                                                <span className="cart-product-color-size">Trắng đen / M</span>
-                                                <a href className="cart-btn-remove" />
-                                            </div>
-                                            <div className="cart-body-row__info__quality">
-                                                <div className="qty-group-btn">
-                                                    <button className="qty-minus"> - </button>
-                                                    <input type="text" className="qty-number" defaultValue={1} />
-                                                    <button className="qty-plus"> + </button>
-                                                </div>
-                                                <div className="price-total">
-                                                    <span className="price-total__text">Tổng cộng:</span>
-                                                    <span className="cart-price">299.000đ</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="cart-body-row">
-                                        <a className="cart-body-row__img" href>
-                                            <img src="./assets/img/polo_nu.jpg" alt="" />
-                                        </a>
-                                        <div className="cart-body-row__info">
-                                            <div className="cart-body-row__info__name">
-                                                <a href className="cart-product-name">
-                                                    Áo Polo nữ cafe phối nét đẹp siêu nhẹ siêu mát đẹp siêu nhẹ siêu mát
-                                                </a>
-                                                <span className="cart-price">299.000đ</span>
-                                                <span className="cart-product-color-size">Trắng đen / M</span>
-                                                <a href className="cart-btn-remove" />
-                                            </div>
-                                            <div className="cart-body-row__info__quality">
-                                                <div className="qty-group-btn">
-                                                    <button className="qty-minus"> - </button>
-                                                    <input type="text" className="qty-number" defaultValue={1} />
-                                                    <button className="qty-plus"> + </button>
-                                                </div>
-                                                <div className="price-total">
-                                                    <span className="price-total__text">Tổng cộng:</span>
-                                                    <span className="cart-price">299.000đ</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="cart-body-row">
-                                        <a className="cart-body-row__img" href>
-                                            <img src="./assets/img/polo_nu.jpg" alt="" />
-                                        </a>
-                                        <div className="cart-body-row__info">
-                                            <div className="cart-body-row__info__name">
-                                                <a href className="cart-product-name">
-                                                    Áo Polo nữ cafe phối nét đẹp siêu nhẹ siêu mát đẹp siêu nhẹ siêu mát
-                                                </a>
-                                                <span className="cart-price">299.000đ</span>
-                                                <span className="cart-product-color-size">Trắng đen / M</span>
-                                                <a href className="cart-btn-remove" />
-                                            </div>
-                                            <div className="cart-body-row__info__quality">
-                                                <div className="qty-group-btn">
-                                                    <button className="qty-minus"> - </button>
-                                                    <input type="text" className="qty-number" defaultValue={1} />
-                                                    <button className="qty-plus"> + </button>
-                                                </div>
+                                                <ButtonQty />
                                                 <div className="price-total">
                                                     <span className="price-total__text">Tổng cộng:</span>
                                                     <span className="cart-price">299.000đ</span>
@@ -458,6 +368,9 @@ function Header() {
                                         </div>
                                         <div className="btn-checkout-cart">
                                             <button className="btn-process-checkout">Xem giỏ hàng</button>
+                                            {/* <Button primary to="/cart">
+                                                Xem giỏ hàng
+                                            </Button> */}
                                         </div>
                                     </div>
                                 </div>

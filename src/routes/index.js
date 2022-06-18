@@ -6,7 +6,7 @@ import SignIn from '~/pages/SignIn';
 
 const publicRoutes = [
     { path: '/', component: Home },
-    { path: '/products', component: Products },
+    { path: '/:products', component: Products },
     { path: '/sign-in', component: SignIn, layout: HeaderOnly },
 ];
 

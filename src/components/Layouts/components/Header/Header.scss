@@ -98,6 +98,7 @@ body.hidden {
     font-size: 1.6rem;
     color: var(--black-color);
     position: relative;
+    cursor: pointer;
 }
 
 .header-nav__item:first-child .header-nav__item-link {
@@ -154,6 +155,7 @@ body.hidden {
     display: block;
     margin-bottom: 15px;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .menu-child-item__title:hover {
@@ -178,6 +180,7 @@ body.hidden {
     text-transform: capitalize;
     display: inline-block;
     position: relative;
+    cursor:pointer;
 }
 
 .menu-child-item ul li a:hover {
@@ -209,39 +212,6 @@ body.hidden {
     align-items: center;
     justify-content: flex-end;
     flex: 1;
-}
-.header-search {
-    height: 36px;
-    margin-right: 35px;
-    flex: 1;
-    max-width: var(--max-width-header-search);
-    display: flex;
-    align-items: center;
-    padding-left: 15px;
-    border-radius: 8px;
-    border: 1px solid #dde1ef;
-}
-.header-search:hover {
-    border-color: var(--primary-color);
-}
-.input-search {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    background-color: var(--white-color);
-    font-size: 1.4rem;
-}
-.header-search .btn-search {
-    border: none;
-    white-space: nowrap;
-    width: 60px;
-    height: calc(100% + 1px);
-    background: #fcaf17 url('https://bizweb.dktcdn.net/100/438/408/themes/848101/assets/search.svg') center center
-        no-repeat;
-    overflow: hidden;
-    border-radius: 0 8px 8px 0;
-    cursor: pointer;
 }
 
 .header-tool {
@@ -300,9 +270,16 @@ body.hidden {
     font-size: 1.4rem;
     padding: 10px;
     color: rgb(73, 73, 73);
+    cursor: pointer;
 }
 .user-list .user-list__item .user-list__item-link:hover {
     color: var(--primary-color);
+}
+.user-name {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.4rem;
+    padding: 10px;
 }
 
 /* Header-tool Wish List */
@@ -389,10 +366,6 @@ body.hidden {
     overflow-y: auto;
 }
 
-.top-cart-content__footer {
-    height: 100px;
-}
-
 .cart-body-row {
     margin-bottom: 15px;
     width: 100%;
@@ -404,6 +377,7 @@ body.hidden {
     width: 83px;
     vertical-align: top;
     position: relative;
+    cursor: pointer;
 }
 
 .cart-body-row__img img {
