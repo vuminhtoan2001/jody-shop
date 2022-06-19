@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react';
+import { Link } from 'react-router-dom';
 
+import config from '~/config';
 import Button from '~/components/Button';
 import ButtonQty from '~/components/ButtonQty';
-import Search from '~/components/Layouts/components/Search';
+import Search from '~/layouts/components/Search';
 import './Header.scss';
 import imgs from '~/assets/imgs';
 
@@ -15,45 +15,44 @@ function Header() {
         <header className="header">
             <div className="topbar">
                 <div className="topbar__banner">
-                    <a href className="topbar__banner-link" />
+                    <Link to={config.routes.home} className="topbar__banner-link"></Link>
                 </div>
                 <div className="grid wide hide-on-mobile-tablet">
                     <ul className="topbar__list">
                         <li className="topbar__list-item">
-                            <a href className="link-item">
+                            <Link to={config.routes.home} className="link-item">
                                 <FontAwesomeIcon icon={faLocationDot} />
                                 <span>
                                     Tìm <span className="text-color">160+</span> cửa hàng
                                 </span>
-                            </a>
+                            </Link>
                         </li>
                         <li className="topbar__list-item">
-                            <a href className="link-item">
+                            <Link to={config.routes.home} className="link-item">
                                 <FontAwesomeIcon icon={faPhone} />
                                 <span>
                                     <b className="text-color">1800 2086</b>
                                 </span>
                                 <img src={imgs.free_call} alt="phone" className="img-free" />
-                            </a>
+                            </Link>
                         </li>
                         <li className="topbar__list-item">
-                            <a href className="link-item">
+                            <Link to="" className="link-item">
                                 <FontAwesomeIcon icon={faEnvelope} />
-
                                 <span>chamsockhachhang@gmail.com</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
             </div>
             <div className="grid wide header-nav">
                 <div className="header-nav__left">
-                    <a className="header-nav__logo">
+                    <Link to={config.routes.home} className="header-nav__logo">
                         <img
                             src="https://bizweb.dktcdn.net/100/438/408/themes/848101/assets/logo.svg?1646961127726"
                             alt=""
                         />
-                    </a>
+                    </Link>
                     <ul className="header-nav__list hide-on-mobile-tablet">
                         <li className="header-nav__item">
                             <a className="header-nav__item-link">TRANG CHỦ</a>
@@ -367,10 +366,10 @@ function Header() {
                                             <span className="cart-subtotal__text-price"> 299.000đ</span>
                                         </div>
                                         <div className="btn-checkout-cart">
-                                            <button className="btn-process-checkout">Xem giỏ hàng</button>
-                                            {/* <Button primary to="/cart">
+                                            {/* <button className="btn-process-checkout">Xem giỏ hàng</button> */}
+                                            <Button primary to="/cart">
                                                 Xem giỏ hàng
-                                            </Button> */}
+                                            </Button>
                                         </div>
                                     </div>
                                 </div>

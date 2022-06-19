@@ -84,11 +84,13 @@ img {
  --max-width-header-search: 390px;
  --width-nav-mobile: 330px;
  --height-nav-mobile: 60px;
+
+ --font-family :'svn-gilroy', sans-serif;
 }
 
 html {
   font-size: 62.5%;
-  font-family: 'svn-gilroy', sans-serif;
+  font-family: var(--font-family);
 }
 
 body {
