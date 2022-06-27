@@ -1,0 +1,39 @@
+.main__slider {
+	width: 100%;
+	margin-top: 2px;
+}
+.main__slider-phone {
+	display: none;
+}
+.main__slider-item {
+	.img-banner {
+		img {
+			margin: 0 auto;
+		}
+	}
+}
+.slick-dots {
+	bottom: 16px !important;
+	left: 50%;
+	transform: translateX(-50%);
+	li {
+		margin: 0 4px;
+		.dot-out {
+			cursor: pointer;
+			background: white;
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+		}
+	}
+	li.slick-active {
+		.dot-in {
+			background: orange;
+			color: orange;
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			border: 1px solid white;
+		}
+	}
+}

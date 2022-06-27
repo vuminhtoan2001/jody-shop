@@ -1,0 +1,50 @@
+.section-blog-list {
+	overflow: hidden;
+	&:hover {
+		.slick-prev {
+			left: 15px;
+		}
+		.slick-next {
+			right: 15px;
+		}
+	}
+}
+.slick-arrow {
+	width: 34px;
+	height: 34px;
+	background-size: contain;
+	transition: all .3s;
+	top: calc(50% - 60px);
+}
+.slide-arrow {
+	.slick-prev {
+		background: url(https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/prev_bst.svg);
+		background-size: contain;
+		left: -35px;
+		z-index: 10;
+		&:hover {
+			background-image: url(https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/prev_bst.svg);
+			background-size: contain;
+		}
+	}
+	.slick-next {
+		background-image: url(https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/next_bst.svg);
+		right: -35px;
+		z-index: 10;
+		background-size: contain;
+		&:hover {
+			background-image: url(https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/next_bst.svg);
+			background-size: contain;
+		}
+	}
+}
+.slick-prev {
+	&:before {
+		content: '';
+	}
+}
+.slick-next {
+	&:before {
+		content: '';
+	}
+}

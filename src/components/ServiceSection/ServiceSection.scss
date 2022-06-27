@@ -1,0 +1,34 @@
+.main__services-list {
+	justify-content: center;
+	padding: 16px 0 30px 0;
+}
+.main__services-item {
+	display: flex;
+	margin-top: 10px;
+	cursor: pointer;
+}
+.services-item-left {
+	display: flex;
+	padding: 0px 5px 0px 0;
+	img {
+		margin: auto;
+	}
+}
+.services-item-right {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.title-services {
+	font-size: 1.6rem;
+	line-height: 18px;
+	text-align: top;
+	padding-bottom: 5px;
+}
+.sumary-services {
+	font-size: 1.3rem;
+	line-height: 18px;
+	span.bold-primary-color {
+		color: var(--primary-color);
+	}
+}

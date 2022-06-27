@@ -1,0 +1,32 @@
+.tabs-title {
+    margin-bottom: 20px;
+  }
+
+  .tabs {
+    padding: 0;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .tab-list {
+    text-align: center;
+  }
+
+  .tab-link {
+    display: inline-block;
+    cursor: pointer;
+    line-height: 38px;
+    border: 1px solid #dde1ef;
+    border-radius: 4px;
+    margin: 0 5px 10px;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    padding: 0 20px;
+  }
+  .tab-link:hover,
+  .tab-link.current {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
