@@ -1,0 +1,156 @@
+/* Filter category */
+/* Filter price */
+/* Main content Products */
+/* Section sort */
+.sidebar {
+	padding-top: 45px;
+}
+.sidebar__filter-selected {
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+}
+.sidebar__filter-selected-header {
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+.sidebar__filter-selected-title {
+	font-size: 1.6rem;
+	color: var(--black-color);
+}
+.sidebar__filter-selected-clearAll {
+	font-size: 1.4rem;
+	cursor: pointer;
+	&:hover {
+		color: var(--primary-color);
+	}
+	i {
+		font-size: 1.4rem;
+	}
+}
+.sidebar__filter-selected-item {
+	display: inline-block;
+	margin-right: 10px;
+	padding: 3px 7px 5px;
+	border-radius: 5px;
+	background-color: var(--primary-color);
+	color: var(--white-color);
+	margin-bottom: 8px;
+	font-size: 1.4rem;
+}
+.aside-title {
+	cursor: pointer;
+	position: relative;
+	line-height: 24px;
+	margin-bottom: 10px;
+	&:after {
+		content: " ";
+		position: absolute;
+		right: 0;
+		top: 4px;
+		width: 16px;
+		height: 16px;
+		background: url("https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/down_sort.svg") no-repeat center;
+	}
+}
+.title-filter {
+	font-size: 1.6rem;
+}
+.aside-content {
+	max-height: 300px;
+	overflow: auto;
+	transition: max-height 0.3s linear;
+}
+.aside-content.active {
+	max-height: 0;
+}
+.aside-content__filter-item {
+	margin-right: 8px;
+	margin-bottom: 8px;
+	display: inline-block;
+	label {
+		position: relative;
+		cursor: pointer;
+		input {
+			display: none;
+			&:checked {
+				+ {
+					span {
+						border-color: var(--primary-color);
+						background-color: var(--white-color);
+						&:after {
+							content: "";
+							position: absolute;
+							top: 0;
+							right: -1px;
+							height: 22px;
+							width: 22px;
+							background: url("https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/chose.svg");
+						}
+					}
+				}
+				~ {
+					.filter-price-checkbox {
+						background: url("https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/check.png");
+					}
+				}
+			}
+		}
+		span {
+			display: inline-block;
+			font-size: 1.4rem;
+			background-color: #f2f2f2;
+			color: #7a7a9d;
+			border-radius: 4px;
+			padding: 0 12px;
+			line-height: 32px;
+			border: 1px #f2f2f2 solid;
+			position: relative;
+			text-transform: capitalize;
+			&:hover {
+				color: var(--primary-color);
+				background-color: var(--white);
+				border-color: currentColor;
+			}
+		}
+	}
+}
+.filter-show-less {
+	img {
+		transform: rotate(180deg);
+	}
+}
+.sidebar__filter-price {
+	.aside-content__filter-item {
+		label {
+			span {
+				display: inline-block;
+				font-size: 1.5rem;
+				background-color: var(--white);
+				color: var(--text-color);
+				border-radius: 4px;
+				padding: 0 12px;
+				line-height: 32px;
+				border: none;
+				position: relative;
+				text-transform: capitalize;
+				padding-left: 27px;
+			}
+		}
+	}
+}
+.filter-price-checkbox {
+	position: absolute;
+	top: -1px;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background: url("https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/uncheck.png");
+}
+.section-sort {
+	margin-bottom: 10px;
+	font-size: 1.6rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

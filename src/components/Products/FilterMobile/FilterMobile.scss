@@ -1,0 +1,73 @@
+.section-sort {
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-sort__count {
+    color: #7a7a9d;
+}
+
+/* Filter mobile nav */
+.section-sort {
+	.open-filter-mobile {
+		width: 75px;
+		font-size: 1.6rem;
+		background: url("https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/filterico.svg") right center no-repeat;
+		padding-right: 15px;
+		padding-left: 10px;
+		border-left: 1px solid #dde1ef;
+		margin: 7px 0;
+		display: none;
+		cursor: pointer;
+	}
+}
+.filter-mobile {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 292px;
+	background-color: var(--white-color);
+	z-index: 100;
+	text-transform: uppercase;
+	transform: translateX(100%);
+	transition: transform 0.3s ease-in-out;
+	overflow-y: auto;
+	padding: 10px 10px 60px;
+}
+.filter-mobile-input {
+	display: none;
+	&:checked {
+		~ {
+			.filter-mobile-overlay {
+				display: block;
+                z-index: 2;
+			}
+			.filter-mobile {
+				transform: translateX(0);
+			}
+		}
+	}
+}
+.filter-mobile-title {
+	padding: 6px 24px 16px;
+	position: relative;
+	margin-bottom: 20px;
+}
+.filter-mobile-title__text {
+	display: block;
+	text-align: center;
+	font-weight: 600;
+	color: var(--primary-color);
+	font-size: 1.6rem;
+}
+.icon-remove-filter-mobile {
+	font-size: 2.8rem;
+	position: absolute;
+	top: 0;
+	left: 5px;
+    cursor: pointer;
+}

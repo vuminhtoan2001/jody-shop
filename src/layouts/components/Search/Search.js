@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import className from 'classnames/bind';
-import styles from './Search.module.scss';
 import Tippy from '@tippyjs/react/headless';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,8 +7,7 @@ import SearchProductItem from '~/components/SearchProductItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { useDebounce } from '~/hooks';
 import * as searchService from '~/services/searchService';
-
-const cx = className.bind(styles);
+import './Search.scss';
 
 function Search() {
     const [searchValue, setSearchValue] = useState('');
@@ -54,7 +51,7 @@ function Search() {
     return (
         // Using a wrapper <div> tag around the reference
         // element solves this by creating a new parentNode context.
-        <div>
+        <div className="wrapper-search">
             <Tippy
                 onClickOutside={handleHide}
                 interactive
@@ -70,20 +67,18 @@ function Search() {
                     </div>
                 )}
             >
-                <form className={cx('header-search')}>
+                <form className="header-search">
                     <input
                         ref={inputRef}
                         type="text"
-                        className={cx('input-search')}
+                        className="input-search"
                         placeholder="Tìm sản phẩm"
                         value={searchValue}
                         onChange={handleChange}
                         onFocus={() => setShowResult(true)}
                     />
-                    {!!searchValue && (
-                        <FontAwesomeIcon className={cx('icon')} icon={faCircleXmark} onClick={handleClear} />
-                    )}
-                    <button type="submit" className={cx('btn-search')} onClick={(e) => e.preventDefault()} />
+                    {!!searchValue && <FontAwesomeIcon className="icon" icon={faCircleXmark} onClick={handleClear} />}
+                    <button type="submit" className="btn-search" onClick={(e) => e.preventDefault()} />
                 </form>
             </Tippy>
         </div>

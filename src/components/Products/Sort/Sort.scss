@@ -1,0 +1,55 @@
+.section-sort__selected-sort {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.section-sort__selected-sort__title {
+	margin-left: 10px;
+	position: relative;
+	.text {
+		width: 230px;
+		line-height: 46px;
+		border: 1px solid #dde1ef;
+		display: inline-block;
+		border-radius: 4px;
+		padding: 0 15px;
+		background: url("https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/down_sort.svg") 200px 15px no-repeat;
+		cursor: pointer;
+		&:hover {
+			.section-sort__selected-sort__option {
+				display: block;
+			}
+		}
+	}
+}
+.section-sort__selected-sort__option {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 230px;
+	z-index: 10;
+	border: 1px #dde1ef solid;
+	background-color: var(--white-color);
+	padding: 10px;
+	display: none;
+	.btn-quick-sort {
+		line-height: 30px;
+		&:hover {
+			a {
+				color: var(--primary-color);
+				background: url("https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/check.svg") right center no-repeat;
+			}
+		}
+		a {
+			display: block;
+			color: var(--text-color);
+			background-size: 16px;
+		}
+	}
+	.btn-quick-sort.active {
+		a {
+			color: var(--primary-color);
+			background: url("https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/check.svg") right center no-repeat;
+		}
+	}
+}

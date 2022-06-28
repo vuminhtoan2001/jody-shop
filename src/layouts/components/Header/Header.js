@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faEnvelope, faLocationDot, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import config from '~/config';
@@ -55,10 +55,14 @@ function Header() {
                     </Link>
                     <ul className="header-nav__list hide-on-mobile-tablet">
                         <li className="header-nav__item">
-                            <a className="header-nav__item-link">TRANG CHỦ</a>
+                            <Link to="/" className="header-nav__item-link">
+                                TRANG CHỦ
+                            </Link>
                         </li>
                         <li className="header-nav__item">
-                            <a className="header-nav__item-link">NỮ</a>
+                            <Link to="/products" className="header-nav__item-link">
+                                NỮ
+                            </Link>
                             <div className="header-nav__child">
                                 <ul className="header-nav__child-item">
                                     <li className="menu-child-main">
@@ -163,10 +167,10 @@ function Header() {
                             </div>
                         </li>
                         <li className="header-nav__item">
-                            <a className="header-nav__item-link">
+                            <Link to="/products" className="header-nav__item-link">
                                 NAM
                                 <i className="font-icon-down fa-solid fa-angle-down" />
-                            </a>
+                            </Link>
                             <div className="header-nav__child">
                                 <ul className="header-nav__child-item">
                                     <li className="menu-child__banner">
@@ -267,10 +271,14 @@ function Header() {
                             </div>
                         </li>
                         <li className="header-nav__item">
-                            <a className="header-nav__item-link">TRẺ EM</a>
+                            <Link to="/products" className="header-nav__item-link">
+                                TRẺ EM
+                            </Link>
                         </li>
                         <li className="header-nav__item">
-                            <a className="header-nav__item-link">POLOYODY</a>
+                            <Link to="/news" className="header-nav__item-link">
+                                POLOYODY
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -279,7 +287,7 @@ function Header() {
                     <Search />
                     <div className="header-tool">
                         <div className="user user-hover hide-on-mobile-tablet">
-                            <a href="login.html" className="user_login">
+                            <a href="log-in" className="user_login">
                                 <img src={imgs.user} alt="" />
                             </a>
                             {currentUser ? (
@@ -288,44 +296,44 @@ function Header() {
                                         <p className="user-name">Vũ Minh Toán</p>
                                     </li>
                                     <li className="user-list__item">
-                                        <a href className="user-list__item-link">
+                                        <Link to="/log-out" className="user-list__item-link">
                                             Đăng xuất
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             ) : (
                                 <ul className="user-list">
                                     <li className="user-list__item">
-                                        <a href="register.html" className="user-list__item-link">
+                                        <Link to="/register" className="user-list__item-link">
                                             Đăng ký
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="user-list__item">
-                                        <a href className="user-list__item-link">
+                                        <Link to="/login" className="user-list__item-link">
                                             Đăng nhập
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             )}
                         </div>
                         <div className="wishlist-header hide-on-mobile-tablet">
-                            <a href="wishlist.html" className="wishlist-header__icon">
+                            <Link to="/wishlist" className="wishlist-header__icon">
                                 <img src={imgs.heart} alt="" />
                                 <span className="headerWishlistCount">4</span>
-                            </a>
+                            </Link>
                         </div>
                         <div className="header-cart">
-                            <a href="cart.html" className="header-cart__icon">
+                            <Link to="/cart" className="header-cart__icon">
                                 <img src={imgs.cart} alt="" />
                                 <span className="header-cart__count-item">2</span>
-                            </a>
+                            </Link>
                             <div className="top-cart-content">
                                 <div className="top-cart-content__header">
-                                    <a href className="title-link">
+                                    <Link to="/login" className="title-link">
                                         <span>Đăng nhập</span>
                                         <span>Đăng nhập và đồng bộ sản phẩm đến giỏ hàng của bạn</span>
                                         <i className="font-icon fa-solid fa-circle-arrow-right" />
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className="top-cart-content__body edit-scrollbar">
                                     <div className="cart-body-row">
@@ -339,7 +347,9 @@ function Header() {
                                                 </a>
                                                 <span className="cart-price">299.000đ</span>
                                                 <span className="cart-product-color-size">Trắng đen / M</span>
-                                                <a href className="cart-btn-remove"></a>
+                                                <a href className="cart-btn-remove">
+                                                    {' '}
+                                                </a>
                                             </div>
                                             <div className="cart-body-row__info__quality">
                                                 <ButtonQty />
@@ -385,9 +395,10 @@ function Header() {
                                 </a>
                             </div>
                         </div>
+                        {/* Navbar mobile */}
                         <div className="category-action">
                             <label htmlFor="checkbox-nav-mobile">
-                                <i className="category-action__icon fa-solid fa-bars" />
+                                <FontAwesomeIcon icon={faBars} className="category-action__icon" />
                             </label>
                             <input
                                 type="checkbox"
@@ -399,7 +410,7 @@ function Header() {
                             {/* nav Mobile */}
                             <div className="nav-mobile">
                                 <label htmlFor="checkbox-nav-mobile">
-                                    <i className="icon-remove-nav-mobile fa-solid fa-xmark" />
+                                    <FontAwesomeIcon icon={faXmark} className="icon-remove-nav-mobile" />
                                 </label>
                                 <div className="nav-mobile__tabs">
                                     <div className="tab-item active">Nữ</div>
