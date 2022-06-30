@@ -1,0 +1,96 @@
+.form-input {
+	padding: 0 20px;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
+	width: 100%;
+	height: 44px;
+	transition: 0.25s ease;
+	outline: none;
+	font-size: 1.4rem;
+	&:focus {
+		border: 2px solid var(--primary-color);
+		+ {
+			.form-label {
+				top: 0;
+				padding: 0 10px;
+				left: 12px;
+				display: inline-block;
+				background-color: #ffffff;
+				font-size: 1.2rem;
+			}
+		}
+	}
+	&:not(:placeholder-shown) {
+		+ {
+			.form-label {
+				top: 0;
+				padding: 0 10px;
+				left: 12px;
+				display: inline-block;
+				background-color: #ffffff;
+				font-size: 1.2rem;
+			}
+		}
+	}
+}
+.form-input.textarea {
+	padding: 10px 20px;
+	height: 80px;
+}
+.form-field {
+	position: relative;
+	margin-bottom: 16px;
+}
+.form-field.invalid {
+	margin-bottom: 30px;
+	.form-input {
+		border: 2px solid #c23527;
+	}
+}
+.form-label {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 22px;
+	user-select: none;
+	color: #999;
+	font-size: 1.4rem;
+	pointer-events: none;
+	transition: 0.25s ease;
+}
+.form-message {
+	position: absolute;
+	left: 20px;
+	top: calc(100% + 6px);
+	font-size: 1.2rem;
+	color: #c23527;
+}
+.form-label.select {
+	top: 25%;
+	font-size: 1.2rem;
+}
+.form-select {
+	padding: 18px 18px 6px;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
+	width: 100%;
+	height: 44px;
+	transition: 0.25s ease;
+	outline: none;
+	font-size: 1.4rem;
+	.select-item {
+		border: 1px solid #d9d9d9;
+		outline: none;
+		padding: 20px;
+	}
+}
+.shipping-not-selected {
+	font-size: 1.4rem;
+	height: 44px;
+	color: var(--primary-color);
+	line-height: 44px;
+	padding: 0 20px;
+	background-color: #d1ecf1;
+	border-color: #bee5eb;
+	border-radius: 4px;
+}

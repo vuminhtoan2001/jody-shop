@@ -42,7 +42,8 @@ function SideBar({ className }) {
 
     return (
         <div className={`sidebar ${className ?? className}`}>
-            <div className="sidebar__filter-selected">
+            {/* Hiện tại chưa làm được chức năng này  */}
+            {/* <div className="sidebar__filter-selected">
                 <div className="sidebar__filter-selected-header">
                     <span className="sidebar__filter-selected-title">Bạn chọn</span>
                     <span className="sidebar__filter-selected-clearAll">
@@ -52,7 +53,7 @@ function SideBar({ className }) {
                 </div>
                 <div className="sidebar__filter-selected-list">
                     <ul>
-                        <li className="sidebar__filter-selected-item">
+                        <li className="sidebar__filter-selected-item" htmlFor="áo sơ mi">
                             <i className="fa-solid fa-xmark" />
                             <span>Xanh navy</span>
                         </li>
@@ -70,7 +71,8 @@ function SideBar({ className }) {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
+            {/* EndPoint : Array selected */}
             {/* Filter category */}
             <Filter
                 handleShowLess={handleShowLess}

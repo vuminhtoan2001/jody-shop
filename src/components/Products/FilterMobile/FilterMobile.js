@@ -22,7 +22,7 @@ function FilterMobile() {
                     </label>
                     <span className="filter-mobile-title__text">BỘ LỌC</span>
                 </div>
-                <SideBar/>
+                <SideBar className="" />
             </div>
         </div>
     );

@@ -287,9 +287,9 @@ function Header() {
                     <Search />
                     <div className="header-tool">
                         <div className="user user-hover hide-on-mobile-tablet">
-                            <a href="log-in" className="user_login">
+                            <Link to="/log-in" className="user_login">
                                 <img src={imgs.user} alt="" />
-                            </a>
+                            </Link>
                             {currentUser ? (
                                 <ul className="user-list">
                                     <li className="user-list__item">

@@ -1,0 +1,52 @@
+.page-account {
+	background: url("https://bizweb.dktcdn.net/100/438/408/themes/848101/assets/bg_login.jpg?1649007644360") bottom center no-repeat;
+	padding: 60px 0;
+	~ {
+		.footer {
+			margin-top: unset;
+		}
+	}
+}
+.container-account {
+	max-width: 660px;
+	margin: 0 auto;
+	padding: 60px 106px;
+	background-color: var(--white-color);
+	border: 2px solid var(--primary-color);
+}
+.form-login__title {
+	font-size: 2.6rem;
+	color: var(--primary-color);
+	font-weight: 600;
+	text-transform: uppercase;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.customer-login {
+	.form-field {
+		margin-top: 10px;
+	}
+}
+.form-login__forgot {
+	font-size: 1.4rem;
+	display: flex;
+	justify-content: space-between;
+	a {
+		color: black;
+	}
+}
+.text-or-center {
+	font-size: 1.2rem;
+	color: #7a7a9d;
+	text-align: center;
+	padding: 10px;
+}
+.form-login__social-login-group-icon {
+	display: flex;
+	justify-content: center;
+}
+.form-login__social-login-icon {
+	width: 129px;
+	height: 37px;
+	padding: 0 2px;
+}

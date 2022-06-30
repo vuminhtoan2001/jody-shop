@@ -1,5 +1,1 @@
-function SignIn() {
-    return <h2>Sign in</h2>;
-}
-
-export default SignIn;
+export { default } from './SignIn';
