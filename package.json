@@ -30,7 +30,7 @@
     "sass": "^1.52.3"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "react-app-rewired start json-server --watch db.json --port 3004",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"

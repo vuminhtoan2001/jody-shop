@@ -9,10 +9,10 @@ function Filter({ maxHeight, handleShowMore, handleShowLess, handleRoll, handleC
             <div className="aside-content edit-scrollbar-filter">
                 <ul className="max-height">
                     {filterData.data.map((item, index) => (
-                        <li className="aside-content__filter-item" key={index}>
+                        <li className="aside-content__filter-item" key={item}>
                             <label htmlFor={item}>
                                 <input type="checkbox" id={item} />
-                                <span>{item}</span>
+                                <span onClick={() => handleClickItem(filterData.type, item)}>{item}</span>
                             </label>
                         </li>
                     ))}
