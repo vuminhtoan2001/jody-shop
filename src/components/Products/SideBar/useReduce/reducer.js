@@ -11,8 +11,8 @@ export const initState = {
 const reducer = (state, action) => {
     let newState;
     let newChildState;
-    console.log('>>> Action:', action);
-    console.log('>>> Prev:', state);
+    // console.log('>>> Action:', action);
+    // console.log('>>> Prev:', state);
     switch (action.typeState) {
         case category:
             newChildState = state.category;
@@ -97,8 +97,8 @@ const reducer = (state, action) => {
         default:
             throw new Error('Invalid type state!');
     }
-    console.log('>>> Next:', newState);
-
+    // console.log('>>> Next:', newState);
+    action.handleFilter(newState);
     return newState;
 };
 

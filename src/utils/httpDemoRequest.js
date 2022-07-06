@@ -1,6 +1,6 @@
 import axios from 'axios';
 const request = axios.create({
-    baseURL: 'https://62bc2a486b1401736cf3dea7.mockapi.io/',
+    baseURL: 'http://localhost:5000/',
 });
 
 export const get = async (path, option = {}) => {

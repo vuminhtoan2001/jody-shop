@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './NewProducts.scss';
 import ProductItem from '~/components/Products/ProductItem';
 import { Slider } from '~/components/Slider';
-import * as newProductService from '~/services/newProductService';
+import * as productService from '~/services/productService';
 
 function NewProducts() {
     const [productsResult, setProductsResult] = useState([]);
@@ -47,27 +47,18 @@ function NewProducts() {
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await newProductService.getNewProducts();
+            const result = await productService.getNewProducts();
             setProductsResult(result);
         };
         fetchApi();
-        // fetch('https://6262611e327d3896e285b17d.mockapi.io/products')
-        //     .then((response) => response.json())
-        //     .then((json) => console.log(json));
     }, []);
-    console.log(productsResult);
 
     return (
         <div className="swiper-products">
             <Slider settings={settings} className="home-list-products-new slide-arrow row">
-                <ProductItem className="col" />
-                <ProductItem className="col" />
-                <ProductItem className="col" />
-                <ProductItem className="col" />
-                <ProductItem className="col" />
-                <ProductItem className="col" />
-                <ProductItem className="col" />
-                <ProductItem className="col" />
+                {productsResult.map((product) => (
+                    <ProductItem key={product.id} className="col" productItem={product} />
+                ))}
             </Slider>
         </div>
     );

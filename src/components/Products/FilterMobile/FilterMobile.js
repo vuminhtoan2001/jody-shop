@@ -5,10 +5,10 @@ import Sort from '~/components/Products/Sort';
 import SideBar from '~/components/Products/SideBar';
 import './FilterMobile.scss';
 
-function FilterMobile() {
+function FilterMobile({ qtyProducts }) {
     return (
         <div className="section-sort">
-            <div className="section-sort__count hide-on-mobile-tablet">20 sản phẩm</div>
+            <div className="section-sort__count hide-on-mobile-tablet">{qtyProducts} sản phẩm</div>
             <Sort />
             <label className="open-filter-mobile" htmlFor="filter-mobile-input">
                 Bộ lọc

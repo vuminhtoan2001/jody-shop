@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, memo } from 'react';
 
 import Filter from './Filter';
 import FilterColor from './FilterColor';
@@ -11,7 +11,16 @@ const data = {
     category: {
         type: 'category',
         title: 'Loại sản phẩm',
-        data: ['áo sơ mi', 'áo thun', 'áo khoác nam', 'bộ đồ nữ', 'quần đùi nam', 'áo da nam'],
+        data: [
+            'Áo sơ mi nam',
+            'Áo polo nam Yody',
+            'Áo polo nữ Yody',
+            'Chân váy',
+            'Áo thun/ Áo phông nữ',
+            'Áo sơ mi nữ',
+            'Áo polo trẻ em',
+            'Áo da nam',
+        ],
     },
     size: {
         type: 'size',
@@ -49,11 +58,9 @@ const data = {
         ],
     },
 };
-function SideBar({ className }) {
+function SideBar({ className, handleSetFilters }) {
     const [state, dispatch] = useReducer(reducer, initState);
-    console.log('>>>>Sidebar State', state);
-    // const { categories, colors, sizes, materials, prices } = state;
-
+    console.log('State filter =>>>', state);
     function handleRoll(e) {
         const aside_title = e.target;
         const aside_content = aside_title.nextSibling;
@@ -77,7 +84,7 @@ function SideBar({ className }) {
     }
 
     function handleClickItem(typeState, payload) {
-        dispatch(handleSelected(typeState, payload));
+        dispatch(handleSelected(typeState, payload, handleSetFilters));
     }
 
     return (
@@ -152,4 +159,4 @@ function SideBar({ className }) {
     );
 }
 
-export default SideBar;
+export default memo(SideBar);
