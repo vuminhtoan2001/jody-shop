@@ -1,7 +1,6 @@
-export const handleSelected = (typeState, payload, handleFilter) => {
+export const handleSelected = (typeState, payload) => {
     return {
         typeState,
         payload,
-        handleFilter,
     };
 };

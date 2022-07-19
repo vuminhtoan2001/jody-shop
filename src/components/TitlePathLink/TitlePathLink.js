@@ -1,21 +1,22 @@
+import { Link } from 'react-router-dom';
+
 import './TitlePathLink.scss';
 
-function TitlePathLink() {
+function TitlePathLink({ links }) {
     return (
         <div className="title-path-link hide-on-mobile">
             <ul className="title-path-link__list">
-                <li className="title-path-link__item">
-                    <a href="/">Trang chủ</a>
-                </li>
-                <li className="title-path-link__item">
-                    <a href="/">Nữ</a>
-                </li>
-                <li className="title-path-link__item">
+                {links.map((link) => (
+                    <li className="title-path-link__item" key={link}>
+                        <Link to="/">{link}</Link>
+                    </li>
+                ))}
+                {/* <li className="title-path-link__item">
                     <a href="/">Bộ đồ nữ</a>
                 </li>
                 <li className="title-path-link__item">
                     <a href="/">Bộ đồ nữ mặc nhà</a>
-                </li>
+                </li> */}
             </ul>
         </div>
     );

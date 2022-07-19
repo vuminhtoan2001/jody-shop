@@ -1,0 +1,239 @@
+/* Product-right */
+.product-detail-left {
+	padding: 0 10px;
+}
+.gallery-img{
+	.slick-list{
+		max-height: 765px;
+	}
+}
+.gallery-img__item {
+	margin: 5px 0;
+	cursor: pointer;
+}
+.product-detail-lager-img {
+	padding-left: 0px;
+	padding-right: 20px;
+	cursor: pointer;
+}
+.gallery-img-next {
+	border: none;
+	width: 100%;
+	height: 25px;
+	background-color: #feeeea;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image: url("https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/leftarr.svg");
+	cursor: pointer;
+	background-image: url("https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/rightarr.svg");
+}
+.gallery-img-pre {
+	border: none;
+	width: 100%;
+	height: 25px;
+	background-color: #feeeea;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image: url("https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/leftarr.svg");
+	cursor: pointer;
+}
+.product-name {
+	font-size: 1.7rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+	color: var(--text-color);
+	line-height: 2.6rem;
+	text-transform: capitalize;
+}
+.product-body__top {
+	display: flex;
+}
+.product-body__top-code-id {
+	font-size: 1.4rem;
+	margin-right: 20px;
+}
+.product-body__top-rate {
+	cursor: pointer;
+	span {
+		font-size: 1.4rem;
+	}
+}
+.product-body__top-rate-icon {
+	font-size: 1.3rem;
+	color: var(--primary-color);
+}
+.product-body__price {
+	margin: 16px 0;
+}
+.product-body__price-not-sale {
+	.product-body__price-old {
+		display: none;
+	}
+}
+.product-body__price-special {
+	font-size: 2rem;
+	color: var(--primary-color);
+	font-weight: 600;
+}
+.product-body__price-old {
+	font-size: 1.6rem;
+	font-weight: 500;
+	text-decoration: line-through;
+	color: #7a7a9d;
+	margin-left: 8px;
+}
+.product-body-size {
+	margin-bottom: 10px;
+}
+.product-body-color {
+	margin-bottom: 10px;
+}
+.product-body-size__title {
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+}
+.product-body-color__title {
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+}
+.product-body-color__element {
+	display: flex;
+}
+.product-body-size__element {
+	display: flex;
+}
+.product-body-color__element-item {
+	margin: 0 10px 10px 0;
+}
+.product-body-size__element-item {
+	margin: 0 10px 10px 0;
+}
+.product-body-color__label {
+	display: inline-block;
+	width: 46px;
+	height: 46px;
+	background-size: 50px;
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 50%;
+	border: 2px solid var(--white-color);
+	cursor: pointer;
+}
+.product-body-size__input {
+	display: none;
+	&:checked {
+		~ {
+			.product-body-size__label {
+				position: relative;
+				border: 2px solid var(--primary-color);
+				color: var(--primary-color);
+				&::after {
+					content: "";
+					width: 21px;
+					height: 20px;
+					position: absolute;
+					bottom: 0;
+					right: 0;
+					background: url("https://bizweb.dktcdn.net/100/438/408/themes/848101/assets/tick.png?1648610632396") center center no-repeat;
+				}
+			}
+		}
+	}
+}
+.product-body-color__input {
+	display: none;
+	&:checked {
+		~ {
+			.product-body-color__label {
+				outline: 2px solid var(--primary-color);
+			}
+		}
+	}
+}
+.product-body-size__label {
+	display: inline-block;
+	width: 46px;
+	height: 46px;
+	text-align: center;
+	line-height: 46px;
+	font-size: 1.8rem;
+	border: 1px solid #dde1ef;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+.product-body-qty {
+	display: flex;
+	margin-bottom: 16px;
+}
+.product-body-example-size {
+	display: block;
+	font-size: 1.5rem;
+	color: var(--primary-color);
+	text-decoration: underline;
+	margin-bottom: 10px;
+}
+.product-body-group-btn {
+	padding: 12px;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+.product-body-btn {
+	font-size: 1.6rem;
+	background: #fcece7;
+	border: none;
+	color: #fcaf17;
+	padding: 8px 10px;
+	height: 54px;
+	line-height: 34px;
+	border-radius: 4px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 600;
+}
+.product-body-btn__add-cart {
+	&:hover {
+		background-color: var(--primary-color);
+		color: var(--white-color);
+		img {
+			filter: brightness(0) invert(1);
+		}
+	}
+}
+.product-body-btn__buy-now {
+	background-color: var(--primary-color);
+	color: var(--white-color);
+}
+.product-body-service {
+	border: 1px solid #dde1ef;
+	margin: 0 0 20px 0;
+	.product-body-service-item {
+		margin-top: 0;
+		padding: 10px;
+		&:nth-child(1) {
+			border-right: 1px solid #dde1ef;
+			border-bottom: 1px solid #dde1ef;
+		}
+		&:nth-child(3) {
+			border-right: 1px solid #dde1ef;
+		}
+		&:nth-child(2) {
+			border-bottom: 1px solid #dde1ef;
+		}
+	}
+}
+.product-body-script__title {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.product-body-script__content {
+	font-size: 1.4rem;
+	line-height: 2rem;
+	p {
+		padding-left: 25px;
+		background: url("https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/tick-line.svg") 0 2px no-repeat;
+		margin-bottom: 5px;
+	}
+}

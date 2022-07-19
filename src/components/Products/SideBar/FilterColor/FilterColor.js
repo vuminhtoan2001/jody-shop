@@ -12,7 +12,7 @@ function FilterColor({ handleRoll, handleClickItem, filterData }) {
             <div className="aside-content edit-scrollbar-filter">
                 <ul className="ul-color">
                     {filterData.data.map((item, index) => (
-                        <li className="aside-content__filter-item">
+                        <li className="aside-content__filter-item" key={item.color}>
                             <label htmlFor={item.name}>
                                 <input type="checkbox" id={item.name} />
                                 <span onClick={() => handleClickItem(filterData.type, item.name)}>

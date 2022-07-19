@@ -98,7 +98,6 @@ const reducer = (state, action) => {
             throw new Error('Invalid type state!');
     }
     // console.log('>>> Next:', newState);
-    action.handleFilter(newState);
     return newState;
 };
 

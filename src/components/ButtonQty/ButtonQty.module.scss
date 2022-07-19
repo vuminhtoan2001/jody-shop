@@ -1,4 +1,4 @@
-.qty-btn-group {
+  .qty-btn-group {
     position: relative;
     width: 50%;
     display: flex;
@@ -35,3 +35,28 @@
     float: right;
     cursor: pointer;
   }
+
+.qty-plus.large,
+.qty-minus.large {
+  height: 40px;
+  width: 48px;
+  font-weight: 600;
+  font-size: 1.6rem;
+  border: 1px solid #dde1ef;
+}
+
+.qty-minus.large {
+  border-radius: 23px 0px 0px 23px;
+}
+
+.qty-plus.large {
+  border-radius: 0px 23px 23px 0px;
+}
+
+.qty-number.large {
+  width: 56px;
+  height: 40px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border: 1px solid #dde1ef;
+}

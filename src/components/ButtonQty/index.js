@@ -4,7 +4,7 @@ import styles from './ButtonQty.module.scss';
 
 const cx = className.bind(styles);
 
-function ButtonQty() {
+function ButtonQty({ large }) {
     const [qty, setQty] = useState(1);
     const handlePlus = () => setQty(+qty + 1);
     const handleMinus = () => {
@@ -13,13 +13,20 @@ function ButtonQty() {
         setQty(qty - 1);
     };
 
+    // const largeClassNme = large ? 'large' : '';
+
     return (
-        <div className={cx('qty-btn-group')}>
-            <button className={cx('qty-minus')} onClick={handleMinus}>
+        <div className={cx('qty-btn-group', { large: large })}>
+            <button className={cx('qty-minus', { large: large })} onClick={handleMinus}>
                 -
             </button>
-            <input type="text" className={cx('qty-number')} value={qty} onChange={(e) => setQty(e.target.value)} />
-            <button className={cx('qty-plus')} onClick={handlePlus}>
+            <input
+                type="text"
+                className={cx('qty-number', { large: large })}
+                value={qty}
+                onChange={(e) => setQty(e.target.value)}
+            />
+            <button className={cx('qty-plus', { large: large })} onClick={handlePlus}>
                 +
             </button>
         </div>

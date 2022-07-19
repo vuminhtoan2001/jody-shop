@@ -61,7 +61,7 @@ function ProductItem({ className, productItem }) {
                 <a href className="product-info-name">
                     <h3>{name}</h3>
                 </a>
-                <div className={`product-info-price ${dataSale === 0 ? '' : 'product-info-price-sale'}`}>
+                <div className={`product-info-price ${!dataSale ? '' : 'product-info-price-sale'}`}>
                     <span className="price-current">{formatToCurrency(price)}</span>
                     <span className="price-old">{formatToCurrency(compare_at_price_max)}</span>
                 </div>

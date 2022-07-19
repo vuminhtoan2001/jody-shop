@@ -24,10 +24,11 @@ const selects = [
     },
 ];
 
-function Sort() {
+function Sort({ onSort }) {
     const [selected, setSelected] = useState(0);
     function handleSelected(id) {
         setSelected(id);
+        onSort(id);
     }
 
     return (

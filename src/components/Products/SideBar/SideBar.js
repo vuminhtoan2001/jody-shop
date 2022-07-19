@@ -1,12 +1,7 @@
-import { useReducer, memo } from 'react';
-
 import Filter from './Filter';
 import FilterColor from './FilterColor';
 import FilterPrice from './FilterPrice';
 import './SideBar.scss';
-import reducer, { initState } from './useReduce/reducer';
-import { handleSelected } from './useReduce/actions';
-
 const data = {
     category: {
         type: 'category',
@@ -30,7 +25,22 @@ const data = {
     material: {
         type: 'material',
         title: 'Chất liệu',
-        data: ['Cotton', 'Vỏ hàu', 'Tuyết mưa', 'Nano', 'Bamboo', 'Tuýt si', 'Lụa', 'Da bò', 'Vải tơ', 'Spandex'],
+        data: [
+            'Cotton',
+            'Vỏ hàu',
+            'Pique',
+            'Cool Compact',
+            'Coolmax',
+            'Tuyết mưa',
+            'Vải dạ',
+            'Nano',
+            'Bamboo',
+            'Tuytsi',
+            'Lụa',
+            'Da bò',
+            'Vải tơ',
+            'Spandex',
+        ],
     },
     color: {
         type: 'color',
@@ -38,12 +48,16 @@ const data = {
         data: [
             { name: 'Xanh navy', color: '#03204c' },
             { name: 'Đen', color: '#000' },
+            { name: 'Trắng', color: '#fff' },
             { name: 'Xanh lá', color: '#62bf5e' },
             { name: 'Nâu', color: '#613b0d' },
             { name: 'Xanh mint', color: '#8cd6c4' },
             { name: 'Đỏ', color: '#f10008' },
             { name: 'Vàng', color: '#efe159' },
             { name: 'Cam', color: '#f19f00' },
+            { name: 'Hồng', color: '#DC85AC' },
+            { name: 'Tím', color: '#C48FE2' },
+            { name: 'Be', color: '#E3CCB5' },
         ],
     },
     price: {
@@ -51,16 +65,14 @@ const data = {
         title: 'Khoảng giá (vnđ)',
         data: [
             { text: 'Nhỏ hơn 100.000đ', value: '<100000' },
-            { text: 'Từ 100.000đ - 300.000đ', value: '>=100000 AND <=200000' },
+            { text: 'Từ 100.000đ - 300.000đ', value: '>=100000 AND <=300000' },
             { text: 'Từ 300.000đ - 500.000đ', value: '>=300000 AND <=500000' },
             { text: 'Từ 500.000đ - 700.000đ', value: '>=500000 AND <=700000' },
             { text: 'Lớn hơn 700.000đ', value: '>700000' },
         ],
     },
 };
-function SideBar({ className, handleSetFilters }) {
-    const [state, dispatch] = useReducer(reducer, initState);
-    console.log('State filter =>>>', state);
+function SideBar({ className, onClickItem }) {
     function handleRoll(e) {
         const aside_title = e.target;
         const aside_content = aside_title.nextSibling;
@@ -81,10 +93,6 @@ function SideBar({ className, handleSetFilters }) {
         maxHeight.classList.add('max-height');
         btnShowMore.classList.remove('d-none');
         btnShowLess.classList.add('d-none');
-    }
-
-    function handleClickItem(typeState, payload) {
-        dispatch(handleSelected(typeState, payload, handleSetFilters));
     }
 
     return (
@@ -123,17 +131,17 @@ function SideBar({ className, handleSetFilters }) {
             <Filter
                 handleShowLess={handleShowLess}
                 handleShowMore={handleShowMore}
-                handleClickItem={handleClickItem}
+                handleClickItem={onClickItem}
                 handleRoll={handleRoll}
                 filterData={data.category}
                 maxHeight
             />
-            <FilterColor handleClickItem={handleClickItem} handleRoll={handleRoll} filterData={data.color} />
+            <FilterColor handleClickItem={onClickItem} handleRoll={handleRoll} filterData={data.color} />
             {/* Filter size */}
             <Filter
                 handleShowLess={handleShowLess}
                 handleShowMore={handleShowMore}
-                handleClickItem={handleClickItem}
+                handleClickItem={onClickItem}
                 handleRoll={handleRoll}
                 filterData={data.size}
                 maxHeight
@@ -142,7 +150,7 @@ function SideBar({ className, handleSetFilters }) {
             <Filter
                 handleShowLess={handleShowLess}
                 handleShowMore={handleShowMore}
-                handleClickItem={handleClickItem}
+                handleClickItem={onClickItem}
                 handleRoll={handleRoll}
                 filterData={data.material}
                 maxHeight
@@ -150,7 +158,7 @@ function SideBar({ className, handleSetFilters }) {
             <FilterPrice
                 handleShowLess={handleShowLess}
                 handleShowMore={handleShowMore}
-                handleClickItem={handleClickItem}
+                handleClickItem={onClickItem}
                 handleRoll={handleRoll}
                 filterData={data.price}
                 maxHeight
@@ -159,4 +167,4 @@ function SideBar({ className, handleSetFilters }) {
     );
 }
 
-export default memo(SideBar);
+export default SideBar;
