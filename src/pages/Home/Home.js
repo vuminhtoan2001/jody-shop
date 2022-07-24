@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import SliderSection from '~/components/SliderSection';
 import ServiceSection from '~/components/ServiceSection';
 import ProductsNewSection from '~/components/Products/ProductsNewSection';
@@ -5,6 +7,10 @@ import BannerSection from '~/components/BannerSection';
 import HomeProductSection from '~/components/Products/HomeProductSection';
 import BlogSection from '~/components/BlogSection';
 function Home() {
+    useEffect(() => {
+        document.title = 'Trang chủ';
+    }, []);
+
     return (
         <div className="main">
             <SliderSection />

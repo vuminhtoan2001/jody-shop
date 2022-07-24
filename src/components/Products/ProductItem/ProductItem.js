@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 import './ProductItem.scss';
 import Image from '~/components/Image';
 import images from '~/assets/imgs';
 
 function ProductItem({ className, productItem }) {
-    const { name, featured_image, compare_at_price_varies, price, compare_at_price_max, variants } = productItem;
+    const { id, name, featured_image, compare_at_price_varies, price, compare_at_price_max, variants } = productItem;
     let dataSale;
     const RefImage = useRef();
     const [optionsWatch, setOptionsWatch] = useState([]);
@@ -43,11 +44,11 @@ function ProductItem({ className, productItem }) {
         <div className={`swiper-products__item ${className ?? className}`}>
             <div className="swiper-products_thubnail" data-sale={compare_at_price_varies ? '' : dataSale}>
                 <span className="new-tag" />
-                <a href className="product-item__img">
+                <Link to={`/products/${id}`} className="product-item__img">
                     <Image ref={RefImage} src={featured_image} />
-                </a>
-                <a
-                    href
+                </Link>
+                <Link
+                    to
                     className={`swiper-products_thubnail__favorite ${
                         favorite && 'swiper-products_thubnail__favorite-liked'
                     }`}
@@ -55,12 +56,12 @@ function ProductItem({ className, productItem }) {
                 >
                     <Image src={images.hearted_ico} className="icon-heart icon-heart-fill" />
                     <Image src={images.heart_ico} className="icon-heart icon-heart-empty" />
-                </a>
+                </Link>
             </div>
             <div className="product-item__info">
-                <a href className="product-info-name">
+                <Link to={`/products/${id}`} className="product-info-name">
                     <h3>{name}</h3>
-                </a>
+                </Link>
                 <div className={`product-info-price ${!dataSale ? '' : 'product-info-price-sale'}`}>
                     <span className="price-current">{formatToCurrency(price)}</span>
                     <span className="price-old">{formatToCurrency(compare_at_price_max)}</span>

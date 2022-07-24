@@ -1,6 +1,5 @@
   .qty-btn-group {
     position: relative;
-    width: 50%;
     display: flex;
     color: var(--text-color);
   }
@@ -13,6 +12,10 @@
     background-color: var(--white-color);
     float: left;
     cursor: pointer;
+  }
+  .disable{
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   .qty-number {

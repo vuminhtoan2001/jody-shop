@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import Form from '~/components/Form';
 import Input from '~/components/Input';
 import { Link } from 'react-router-dom';
@@ -5,6 +7,9 @@ import { Link } from 'react-router-dom';
 import './SignIn.scss';
 
 function SignIn() {
+    useEffect(() => {
+        document.title = 'Đăng nhập';
+    }, []);
     return (
         <div className="grid page-account">
             <div className="container-account form-login row">

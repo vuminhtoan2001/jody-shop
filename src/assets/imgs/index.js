@@ -24,6 +24,9 @@ const imgs = {
     ser_4: require('./ser_4.png'),
     // baner
     banner_hangngay_1: require('./banner_hangngay_1.png'),
+
+    // Cart
+    blank_cart: require('./blank_cart.svg').default,
 };
 
 export default imgs;

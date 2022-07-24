@@ -41,6 +41,7 @@ function Sort({ onSort }) {
                         {selects.map((select) => (
                             <li
                                 className={`btn-quick-sort ${selected === select.id ? 'active' : ''}`}
+                                key={select.id}
                                 onClick={() => handleSelected(select.id)}
                             >
                                 <a href>{select.title}</a>

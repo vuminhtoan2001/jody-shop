@@ -101,7 +101,7 @@ body.hidden {
     cursor: pointer;
 }
 
-.header-nav__item:first-child .header-nav__item-link {
+.header-nav__item-link.active {
     color: var(--primary-color);
 }
 
@@ -428,13 +428,14 @@ body.hidden {
 }
 
 .cart-btn-remove {
-    background: url('https://bizweb.dktcdn.net/100/438/408/themes/848101/assets/remove_cart_nor.svg') center center
+    background: url('https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/remove_cart_nor.svg') center center
         no-repeat;
     position: absolute;
     right: 0;
     top: 0;
     width: 18px;
     height: 18px;
+    cursor: pointer;
 }
 
 .cart-btn-remove:hover {
@@ -449,7 +450,7 @@ body.hidden {
 .price-total {
     flex: 1;
     text-align: right;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 26px;
 }
 
@@ -458,7 +459,8 @@ body.hidden {
 }
 
 .price-total .cart-price {
-    font-size: 1.7rem;
+    margin-left: 6px;
+    font-size: 1.5rem;
     display: inline-block;
     color: var(--primary-color);
 }
@@ -492,8 +494,10 @@ body.hidden {
 }
 
 .cart-subtotal__text-price {
+    font-size: 2rem;
     color: var(--primary-color);
     margin-left: 6px;
+    font-weight: bold;
 }
 
 /* .btn-checkout-cart{
@@ -513,7 +517,7 @@ body.hidden {
 /* Hover */
 
 /* Cart-empty */
-.header-cart:hover .top-cart-content {
+.header-cart:hover .top-cart-content, .header-cart:hover .top-cart-content-empty {
     display: block;
 }
 
@@ -528,8 +532,7 @@ body.hidden {
     box-shadow: 0px 3px 25px 0px rgb(31, 38, 67, 0.1);
     font-size: 1.4rem;
     color: var(--black-color);
-    opacity: 0;
-    animation: fadeIn ease-in 3s;
+    animation: fadeIn ease-in 0.2s;
     display: none;
 }
 @keyframes fadeIn {

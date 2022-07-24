@@ -1,16 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faLocationDot, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import config from '~/config';
-import Button from '~/components/Button';
-import ButtonQty from '~/components/ButtonQty';
 import Search from '~/layouts/components/Search';
+import Cart from '~/layouts/components/Cart';
 import './Header.scss';
 import imgs from '~/assets/imgs';
 
 function Header() {
-    const currentUser = true;
+    const currentUser = false;
     return (
         <header className="header">
             <div className="topbar">
@@ -55,14 +54,14 @@ function Header() {
                     </Link>
                     <ul className="header-nav__list hide-on-mobile-tablet">
                         <li className="header-nav__item">
-                            <Link to="/" className="header-nav__item-link">
+                            <NavLink to="/" className="header-nav__item-link">
                                 TRANG CHỦ
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className="header-nav__item">
-                            <Link to="/products" className="header-nav__item-link">
+                            <NavLink to="/products" className="header-nav__item-link">
                                 NỮ
-                            </Link>
+                            </NavLink>
                             <div className="header-nav__child">
                                 <ul className="header-nav__child-item">
                                     <li className="menu-child-main">
@@ -167,10 +166,10 @@ function Header() {
                             </div>
                         </li>
                         <li className="header-nav__item">
-                            <Link to="/products" className="header-nav__item-link">
+                            <NavLink to="/products" className="header-nav__item-link">
                                 NAM
                                 <i className="font-icon-down fa-solid fa-angle-down" />
-                            </Link>
+                            </NavLink>
                             <div className="header-nav__child">
                                 <ul className="header-nav__child-item">
                                     <li className="menu-child__banner">
@@ -271,14 +270,14 @@ function Header() {
                             </div>
                         </li>
                         <li className="header-nav__item">
-                            <Link to="/products" className="header-nav__item-link">
+                            <NavLink to="/products" className="header-nav__item-link">
                                 TRẺ EM
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className="header-nav__item">
-                            <Link to="/news" className="header-nav__item-link">
+                            <NavLink to="/news" className="header-nav__item-link">
                                 POLOYODY
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>
@@ -322,79 +321,7 @@ function Header() {
                                 <span className="headerWishlistCount">4</span>
                             </Link>
                         </div>
-                        <div className="header-cart">
-                            <Link to="/cart" className="header-cart__icon">
-                                <img src={imgs.cart} alt="" />
-                                <span className="header-cart__count-item">2</span>
-                            </Link>
-                            <div className="top-cart-content">
-                                <div className="top-cart-content__header">
-                                    <Link to="/login" className="title-link">
-                                        <span>Đăng nhập</span>
-                                        <span>Đăng nhập và đồng bộ sản phẩm đến giỏ hàng của bạn</span>
-                                        <i className="font-icon fa-solid fa-circle-arrow-right" />
-                                    </Link>
-                                </div>
-                                <div className="top-cart-content__body edit-scrollbar">
-                                    <div className="cart-body-row">
-                                        <a className="cart-body-row__img" href>
-                                            <img src={imgs.aopolo_nu_vang} alt="" />
-                                        </a>
-                                        <div className="cart-body-row__info">
-                                            <div className="cart-body-row__info__name">
-                                                <a href className="cart-product-name">
-                                                    Áo Polo nữ cafe phối nét đẹp siêu nhẹ siêu mát đẹp siêu nhẹ siêu mát
-                                                </a>
-                                                <span className="cart-price">299.000đ</span>
-                                                <span className="cart-product-color-size">Trắng đen / M</span>
-                                                <a href className="cart-btn-remove">
-                                                    {' '}
-                                                </a>
-                                            </div>
-                                            <div className="cart-body-row__info__quality">
-                                                <ButtonQty />
-                                                <div className="price-total">
-                                                    <span className="price-total__text">Tổng cộng:</span>
-                                                    <span className="cart-price">299.000đ</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="top-cart-content__footer">
-                                    <div className="ship-cart">
-                                        <span className>
-                                            Đủ điều kiện nhận
-                                            <a href className="ship-cart__link">
-                                                vận chuyển miễn phí
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div className="top-cart-content__footer-btn-view-cart">
-                                        <div className="cart-subtotal">
-                                            <span className="price-total__text">Tổng cộng: </span>
-                                            <span className="cart-subtotal__text-price"> 299.000đ</span>
-                                        </div>
-                                        <div className="btn-checkout-cart">
-                                            {/* <button className="btn-process-checkout">Xem giỏ hàng</button> */}
-                                            <Button primary to="/cart">
-                                                Xem giỏ hàng
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="top-cart-content-empty" style={{ display: 'none' }}>
-                                <img src="./assets/img/blank_cart.svg" alt="" />
-                                <div className="top-cart-content-empty__text">Giỏ hàng của bạn trống</div>
-                                <a href className="top-cart-content-empty__link-login">
-                                    Đăng nhập / Đăng ký
-                                </a>
-                                <a href className="top-cart-content-empty__link-product">
-                                    Mua ngay
-                                </a>
-                            </div>
-                        </div>
+                        <Cart />
                         {/* Navbar mobile */}
                         <div className="category-action">
                             <label htmlFor="checkbox-nav-mobile">

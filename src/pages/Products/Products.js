@@ -55,6 +55,7 @@ function Products() {
         const fetchApi = async () => {
             const result = await productService.getProducts();
             setProducts(result);
+            document.title = 'Sản phẩm';
         };
         fetchApi();
     }, []);

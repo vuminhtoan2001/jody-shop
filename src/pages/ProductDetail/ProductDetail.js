@@ -1,15 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { uniqBy } from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addToCart } from '~/redux/slices/cartSlice';
 
 import { Slider } from '~/components/Slider';
 import * as productService from '~/services/productService';
+import NewProducts from '~/components/Products/NewProducts';
 import TitlePathLink from '~/components/TitlePathLink';
+import HomeTitleSection from '~/components/HomeTitleSection';
 import Image from '~/components/Image';
+import images from '~/assets/imgs';
 import ButtonQty from '~/components/ButtonQty';
 import './ProductDetail.scss';
 
-function ProductDetail(id) {
+function ProductDetail() {
     const settings = {
         infinite: true,
         slidesToShow: 5,
@@ -21,17 +27,34 @@ function ProductDetail(id) {
         // prevArrow: "<button type='button' className='gallery-img-pre'></button>",
         // nextArrow: "<button type='button' className='gallery-img-next'></button>",
     };
+    const dispatch = useDispatch();
     const [product, setProduct] = useState();
     const [productColors, setProductColors] = useState();
     const [currentColor, setCurrentColor] = useState(0);
     const [size, setSize] = useState();
     const [galleryImage, setGalleryImage] = useState();
     const [selected, setSelected] = useState(0);
+    const refMainImage = useRef();
+    const { id } = useParams();
+
+    const carts = useSelector((state) => state.cart);
+    const [isExistCart, setIsExistCart] = useState(false);
+    const [qtyInput, setQtyInput] = useState(1);
+
+    const qtyProduct = () => {
+        const productInCart = carts.find((cart) => cart.id === product.id);
+        if (productInCart) {
+            return productInCart.quantity;
+        } else {
+            return qtyInput;
+        }
+    };
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await productService.getProducts(`products/23371837`);
+            const result = await productService.getProducts(`products/${id}`);
             setProduct(result);
+            document.title = result.name;
         };
         fetchApi();
     }, [id]);
@@ -39,10 +62,16 @@ function ProductDetail(id) {
     useEffect(() => {
         if (product) {
             const variantColor = uniqBy(product.variants, 'option1');
-            // const variantSize = uniqBy(product.variants, 'option2');
             setProductColors(variantColor);
+            const productInCart = carts.find((cart) => cart.id === product.id);
+            if (productInCart) {
+                setIsExistCart(true);
+            } else {
+                setIsExistCart(false);
+            }
         }
-    }, [product]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [product, carts]);
 
     useEffect(() => {
         if (productColors) {
@@ -56,6 +85,7 @@ function ProductDetail(id) {
             });
             setSize(sizeProduct);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentColor, productColors]);
 
     const handleCurrentColor = (index) => {
@@ -66,6 +96,26 @@ function ProductDetail(id) {
         setSelected(index);
     };
 
+    const handleHoverImage = (img) => {
+        refMainImage.current.src = img;
+    };
+
+    const getInputValue = (values) => {
+        setQtyInput(values);
+    };
+
+    const getInfoProductAddToCart = () => {
+        return {
+            id: size[selected].id,
+            productId: product.id,
+            name: product.name,
+            price: product.price,
+            variantTitle: size[selected].title,
+            image: productColors[currentColor].featured_image.src,
+            quantity: qtyProduct(),
+        };
+    };
+
     const formatToCurrency = (price) => {
         return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     };
@@ -74,7 +124,7 @@ function ProductDetail(id) {
         <>
             {product && (
                 <div className="main grid">
-                    <TitlePathLink links={['Sản phẩm', 'Áo phông nam poque mắt bồ câu']} />
+                    <TitlePathLink links={['Sản phẩm', product.name]} />
                     <div className="main__container grid wide wide-md">
                         <div className="row product-detail">
                             <div className="product-detail-left l-7 m-12 c-12">
@@ -84,7 +134,11 @@ function ProductDetail(id) {
                                             {galleryImage &&
                                                 galleryImage.map((image) => {
                                                     return (
-                                                        <div className="gallery-img__item" key={image}>
+                                                        <div
+                                                            className="gallery-img__item"
+                                                            key={image}
+                                                            onMouseMove={() => handleHoverImage(image)}
+                                                        >
                                                             <Image src={image} />
                                                         </div>
                                                     );
@@ -93,7 +147,10 @@ function ProductDetail(id) {
                                     </div>
 
                                     <div className="product-detail-lager-img col l-10 m-10 c-0">
-                                        <Image src={productColors && productColors[currentColor].featured_image.src} />
+                                        <Image
+                                            src={productColors && productColors[currentColor].featured_image.src}
+                                            ref={refMainImage}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -198,15 +255,24 @@ function ProductDetail(id) {
                                             </div>
                                         </div>
                                         <div className="product-body-qty">
-                                            <ButtonQty large />
+                                            <ButtonQty
+                                                large
+                                                quantity={qtyProduct()}
+                                                id={product.id}
+                                                isExistCart={isExistCart}
+                                                getInputValue={getInputValue}
+                                            />
                                         </div>
                                         <Link className="product-body-example-size" to="/">
                                             Bảng size chuẩn
                                         </Link>
                                         <div className="product-body-group-btn row">
-                                            <button className="product-body-btn product-body-btn__add-cart col l-6 m-6 c-6">
+                                            <button
+                                                className="product-body-btn product-body-btn__add-cart col l-6 m-6 c-6"
+                                                onClick={() => dispatch(addToCart(getInfoProductAddToCart()))}
+                                            >
                                                 <img
-                                                    src="https://bizweb.sapocdn.net/100/438/408/themes/848101/assets/shopping-cart.svg?1648716291902"
+                                                    src="https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/shopping-cart.svg?1658550439528"
                                                     alt=""
                                                 />
                                                 <span>Thêm vào giỏ hàng</span>
@@ -219,7 +285,7 @@ function ProductDetail(id) {
                                     <div className="product-body-service row">
                                         <div className="main__services-item product-body-service-item col l-6 m-6 c-0">
                                             <div className="services-item-left">
-                                                <img src="./assets/img/ser_1.png" alt="" />
+                                                <img src={images.ser_1} alt="" />
                                             </div>
                                             <div className="services-item-right">
                                                 <div className="title-services">Miễn phí giao hàng</div>
@@ -231,7 +297,7 @@ function ProductDetail(id) {
                                         </div>
                                         <div className="main__services-item product-body-service-item col l-6 m-6 c-0">
                                             <div className="services-item-left">
-                                                <img src="./assets/img/ser_2.png" alt="" />
+                                                <img src={images.ser_2} alt="" />
                                             </div>
                                             <div className="services-item-right">
                                                 <div className="title-services">Thanh toán COD</div>
@@ -243,7 +309,7 @@ function ProductDetail(id) {
                                         </div>
                                         <div className="main__services-item product-body-service-item col l-6 m-6 c-0">
                                             <div className="services-item-left">
-                                                <img src="./assets/img/ser_3.png" alt="" />
+                                                <img src={images.ser_3} alt="" />
                                             </div>
                                             <div className="services-item-right">
                                                 <div className="title-services">Khách hàng VIP</div>
@@ -255,7 +321,7 @@ function ProductDetail(id) {
                                         </div>
                                         <div className="main__services-item product-body-service-item col l-6 m-6 c-0">
                                             <div className="services-item-left">
-                                                <img src="./assets/img/ser_4.png" alt="" />
+                                                <img src={images.ser_4} alt="" />
                                             </div>
                                             <div className="services-item-right">
                                                 <div className="title-services">Hỗ trợ bảo hành</div>
@@ -286,7 +352,7 @@ function ProductDetail(id) {
                             </div>
                         </div>
                         <div className="product-content-bottom">
-                            <div className="product-content-bottom__title">Chi tiết sản phẩm</div>
+                            <HomeTitleSection>Chi tiết sản phẩm</HomeTitleSection>
                             <div className="product-content-bottom__main">
                                 <div className="has-height">
                                     <p style={{ fontSize: '1.6rem', fontWeight: 600, textAlign: 'center' }}>
@@ -347,7 +413,7 @@ function ProductDetail(id) {
                                         <em>Chất liệu Cool Compact - trải nghiệm thoải mái, dễ chịu</em>
                                     </p>
                                 </div>
-                                <div className="show-more">
+                                {/* <div className="show-more">
                                     <div className="btn-more col l-4 l-o-4 m-12 c-12 show-more__btn-action-more">
                                         <span>Đọc thêm</span>
                                         <i className="fa-solid fa-chevron-down" />
@@ -356,456 +422,12 @@ function ProductDetail(id) {
                                         <span>Thu gon</span>
                                         <i className="fa-solid fa-chevron-up" />
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="product-offer">
-                            <h2 className="title-block">có thể bạn muốn mua</h2>
-                            <div className="product-offer__list">
-                                <div className="home-list-products-new row">
-                                    <div className="swiper-products__item col">
-                                        <div className="swiper-products_thubnail" data-sale="10%">
-                                            <span className="new-tag" />
-                                            <a href className="product-item__img">
-                                                <img
-                                                    src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000"
-                                                    alt=""
-                                                />
-                                            </a>
-                                            <a
-                                                href
-                                                className="swiper-products_thubnail__favorite swiper-products_thubnail__favorite-liked"
-                                            >
-                                                <img
-                                                    src="./assets/img/hearted_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-fill"
-                                                />
-                                                <img
-                                                    src="./assets/img/heart_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-empty"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="product-item__info">
-                                            <a href className="product-info-name">
-                                                <h3>Áo polo nữ cafe phối màu</h3>
-                                            </a>
-                                            <div className="product-info-price product-info-price-sale">
-                                                <span className="price-current">299.000đ</span>
-                                                <span className="price-old">329.000đ</span>
-                                            </div>
-                                            <div className="product-info-option-watch">
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/large/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-products__item col">
-                                        <div className="swiper-products_thubnail">
-                                            <span className="new-tag" />
-                                            <a href className="product-item__img">
-                                                <img
-                                                    src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn4446-tra-2.jpg?v=1636605894000"
-                                                    alt=""
-                                                />
-                                            </a>
-                                            <a
-                                                href
-                                                className="swiper-products_thubnail__favorite swiper-products_thubnail__favorite-liked"
-                                            >
-                                                <img
-                                                    src="./assets/img/hearted_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-fill"
-                                                />
-                                                <img
-                                                    src="./assets/img/heart_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-empty"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="product-item__info">
-                                            <a href className="product-info-name">
-                                                <h3>
-                                                    Áo polo nữ cafe phối màu Áo polo nữ cafe phối màu Áo polo nữ cafe
-                                                    phối màu
-                                                </h3>
-                                            </a>
-                                            <div className="product-info-price">
-                                                <span className="price-current">299.000đ</span>
-                                                <span className="price-old">329.000đ</span>
-                                            </div>
-                                            <div className="product-info-option-watch">
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/large/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-products__item col">
-                                        <div
-                                            className="swiper-products_thubnail swiper-products_thubnail-had-new-tag"
-                                            data-sale="22%"
-                                        >
-                                            <span className="new-tag" />
-                                            <a href className="product-item__img">
-                                                <img
-                                                    src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apm3299-dml-qjm5037-den-4.jpg?v=1646663806000"
-                                                    alt=""
-                                                />
-                                            </a>
-                                            <a href className="swiper-products_thubnail__favorite">
-                                                <img
-                                                    src="./assets/img/hearted_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-fill"
-                                                />
-                                                <img
-                                                    src="./assets/img/heart_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-empty"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="product-item__info">
-                                            <a href className="product-info-name">
-                                                <h3>
-                                                    Áo polo nữ cafe phối màu Áo polo nữ cafe phối màu Áo polo nữ cafe
-                                                    phối màu
-                                                </h3>
-                                            </a>
-                                            <div className="product-info-price product-info-price-sale">
-                                                <span className="price-current">299.000đ</span>
-                                                <span className="price-old">329.000đ</span>
-                                            </div>
-                                            <div className="product-info-option-watch">
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/large/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-products__item col">
-                                        <div className="swiper-products_thubnail">
-                                            <span className="new-tag" />
-                                            <a href className="product-item__img">
-                                                <img src="./assets/img/aopolo_nu_vang.jpg" alt="" />
-                                            </a>
-                                            <a href className="swiper-products_thubnail__favorite">
-                                                <img
-                                                    src="./assets/img/hearted_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-fill"
-                                                />
-                                                <img
-                                                    src="./assets/img/heart_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-empty"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="product-item__info">
-                                            <a href className="product-info-name">
-                                                <h3>Áo polo nữ cafe phối màu, Áo polo nữ cafe</h3>
-                                            </a>
-                                            <div className="product-info-price">
-                                                <span className="price-current">299.000đ</span>
-                                                <span className="price-old">329.000đ</span>
-                                            </div>
-                                            <div className="product-info-option-watch">
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/large/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-products__item col">
-                                        <div className="swiper-products_thubnail">
-                                            <span className="new-tag" />
-                                            <a href className="product-item__img">
-                                                <img
-                                                    src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn4446-tra-2.jpg?v=1636605894000"
-                                                    alt=""
-                                                />
-                                            </a>
-                                            <a
-                                                href
-                                                className="swiper-products_thubnail__favorite swiper-products_thubnail__favorite-liked"
-                                            >
-                                                <img
-                                                    src="./assets/img/hearted_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-fill"
-                                                />
-                                                <img
-                                                    src="./assets/img/heart_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-empty"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="product-item__info">
-                                            <a href className="product-info-name">
-                                                <h3>
-                                                    Áo polo nữ cafe phối màu Áo polo nữ cafe phối màu Áo polo nữ cafe
-                                                    phối màu
-                                                </h3>
-                                            </a>
-                                            <div className="product-info-price">
-                                                <span className="price-current">299.000đ</span>
-                                                <span className="price-old">329.000đ</span>
-                                            </div>
-                                            <div className="product-info-option-watch">
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/large/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-products__item col">
-                                        <div className="swiper-products_thubnail">
-                                            <span className="new-tag" />
-                                            <a href className="product-item__img">
-                                                <img
-                                                    src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apm4355-vag-5.jpg?v=1635816690000"
-                                                    alt=""
-                                                />
-                                            </a>
-                                            <a href className="swiper-products_thubnail__favorite">
-                                                <img
-                                                    src="./assets/img/hearted_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-fill"
-                                                />
-                                                <img
-                                                    src="./assets/img/heart_ico.svg"
-                                                    alt=""
-                                                    className="icon-heart icon-heart-empty"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="product-item__info">
-                                            <a href className="product-info-name">
-                                                <h3>
-                                                    Áo polo nữ cafe phối màu Áo polo nữ cafe phối màu Áo polo nữ cafe
-                                                    phối màu
-                                                </h3>
-                                            </a>
-                                            <div className="product-info-price">
-                                                <span className="price-current">299.000đ</span>
-                                                <span className="price-old">329.000đ</span>
-                                            </div>
-                                            <div className="product-info-option-watch">
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/small/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="product-info-option-watch__item">
-                                                    <div
-                                                        className="color"
-                                                        style={{
-                                                            backgroundImage:
-                                                                'url("https://bizweb.dktcdn.net/thumb/large/100/438/408/products/qjn4014-tru-apn3700-gre-3.jpg?v=1641958600000")',
-                                                            backgroundSize: '37px',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            backgroundPosition: 'center!important',
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <HomeTitleSection>Có thể bạn muốn mua</HomeTitleSection>
+                            <NewProducts />
                         </div>
                     </div>
                 </div>

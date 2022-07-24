@@ -10,7 +10,7 @@ function FilterPrice({ maxHeight, handleShowMore, handleShowLess, handleRoll, ha
                 <ul className="max-height">
                     <ul className="ul-color">
                         {filterData.data.map((item, index) => (
-                            <li className="aside-content__filter-item">
+                            <li className="aside-content__filter-item" key={item.text}>
                                 <label htmlFor={item.text}>
                                     <input type="checkbox" id={item.text} />
                                     <i className="filter-price-checkbox" />
