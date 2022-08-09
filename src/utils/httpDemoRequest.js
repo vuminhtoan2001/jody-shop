@@ -8,4 +8,9 @@ export const get = async (path, option = {}) => {
     return response.data;
 };
 
+export const post = async (path, data = {}) => {
+    const response = await request.post(path, data);
+    return response;
+};
+
 export default request;

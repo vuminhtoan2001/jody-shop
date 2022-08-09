@@ -17,7 +17,6 @@ function ButtonQty({ large, id, quantity, isExistCart, getInputValue }) {
 
     useEffect(() => {
         if (getInputValue) {
-            console.log(getInputValue);
             getInputValue(qty);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

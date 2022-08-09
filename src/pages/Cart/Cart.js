@@ -131,9 +131,9 @@ function Cart() {
                                             {numberWithCommas(totalPrice)}đ
                                         </div>
                                     </div>
-                                    <a href="checkout.html" className="btn-more">
+                                    <Link to="/checkout" className="btn-more">
                                         Thanh toán &nbsp;({totalQty})
-                                    </a>
+                                    </Link>
                                     <span className="form-cart-payment__text-sale">
                                         Dùng mã giảm giá của YODY trong bước tiếp theo
                                     </span>

@@ -12,6 +12,7 @@ import TitlePathLink from '~/components/TitlePathLink';
 import HomeTitleSection from '~/components/HomeTitleSection';
 import Image from '~/components/Image';
 import images from '~/assets/imgs';
+import Button from '~/components/Button';
 import ButtonQty from '~/components/ButtonQty';
 import './ProductDetail.scss';
 
@@ -267,7 +268,7 @@ function ProductDetail() {
                                             Bảng size chuẩn
                                         </Link>
                                         <div className="product-body-group-btn row">
-                                            <button
+                                            <Button
                                                 className="product-body-btn product-body-btn__add-cart col l-6 m-6 c-6"
                                                 onClick={() => dispatch(addToCart(getInfoProductAddToCart()))}
                                             >
@@ -276,10 +277,13 @@ function ProductDetail() {
                                                     alt=""
                                                 />
                                                 <span>Thêm vào giỏ hàng</span>
-                                            </button>
-                                            <button className="product-body-btn product-body-btn__buy-now col l-5 m-5 c-6">
+                                            </Button>
+                                            <Button
+                                                className="product-body-btn product-body-btn__buy-now col l-5 m-5 c-6"
+                                                to="/checkout"
+                                            >
                                                 Mua ngay
-                                            </button>
+                                            </Button>
                                         </div>
                                     </div>
                                     <div className="product-body-service row">

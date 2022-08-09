@@ -25,6 +25,8 @@
     "react-slick": "^0.29.0",
     "redux": "^4.2.0",
     "slick-carousel": "^1.8.1",
+    "sub-vn": "^0.0.2",
+    "sweetalert2": "^11.4.24",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -38,7 +40,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "json-server": "npx json-server --watch db.json --port 5000"
+    "server": "npx json-server --watch db.json --port 5000"
   },
   "eslintConfig": {
     "extends": [

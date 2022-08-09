@@ -6,7 +6,7 @@ import { Slider } from '~/components/Slider';
 import * as productService from '~/services/productService';
 
 function NewProducts() {
-    const [productsResult, setProductsResult] = useState([]);
+    const [productsResult, setProductsResult] = useState();
 
     function SampleNextArrow(props) {
         const { className, onClick } = props;
@@ -56,9 +56,10 @@ function NewProducts() {
     return (
         <div className="swiper-products">
             <Slider settings={settings} className="home-list-products-new slide-arrow row">
-                {productsResult.map((product) => (
-                    <ProductItem key={product.id} className="col" productItem={product} />
-                ))}
+                {productsResult &&
+                    productsResult.map((product) => (
+                        <ProductItem key={product.id} className="col" productItem={product} />
+                    ))}
             </Slider>
         </div>
     );

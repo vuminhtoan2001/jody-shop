@@ -6,6 +6,7 @@ const routes = {
     signUp: '/register',
     news: '/news',
     cart: '/cart',
+    checkout: '/checkout',
 };
 
 export default routes;

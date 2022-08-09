@@ -1,0 +1,14 @@
+.form-field.invalid {
+	margin-bottom: 30px;
+	.form-select {
+		border: 1.5px solid #c23527;
+	}
+}
+
+.form-message {
+	position: absolute;
+	left: 20px;
+	top: calc(100% + 6px);
+	font-size: 1.2rem;
+	color: #c23527;
+}
