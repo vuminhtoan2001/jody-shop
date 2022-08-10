@@ -14,7 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import * as orderService from '~/services/orderService';
-import { formValidate } from '~/FormValidation';
+import { formValidateCheckout } from '~/FormValidation';
 import Input from '~/components/Input';
 import InputSelect from '~/components/InputSelect';
 import Image from '~/components/Image';
@@ -31,7 +31,6 @@ function Checkout() {
 
     const [formData, dispatch] = useReducer(formReducer, {});
     const [formErrors, setFormErrors] = useState();
-    const [formValidation, setFormValidation] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     // eslint-disable-next-line no-unused-vars
     const [provinces, setProvinces] = useState(subVn.getProvinces());
@@ -39,6 +38,9 @@ function Checkout() {
     const [wards, setWards] = useState();
     const shippingRef = useRef();
 
+    useEffect(() => {
+        document.title = 'Thanh toán';
+    }, []);
     // Logic shipping
     useEffect(() => {
         let classNameShipping = shippingRef.current.className;
@@ -55,17 +57,12 @@ function Checkout() {
         }
     }, [wards, districts]);
 
-    // Logic submit form
-    useEffect(() => {
-        if (formValidation && submitting) {
-            submitForm();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [formValidation]);
-
     // handle FormErrors
     useEffect(() => {
-        return () => setFormErrors(formValidate(formData));
+        if (submitting) {
+            setFormErrors(formValidateCheckout(formData));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formData]);
 
     const validValuesForm = () => {
@@ -119,11 +116,13 @@ function Checkout() {
 
     const handleSubmit = () => {
         if (!submitting) {
-            setFormErrors(formValidate(formData));
+            setFormErrors(formValidateCheckout(formData));
+            setSubmitting(true);
+        } else {
+            if (validValuesForm()) {
+                submitForm();
+            }
         }
-        const result = validValuesForm();
-        setFormValidation(result);
-        setSubmitting(true);
     };
 
     function numberWithCommas(number) {

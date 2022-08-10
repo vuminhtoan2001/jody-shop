@@ -2,7 +2,7 @@ import * as httpDemoRequest from '~/utils/httpDemoRequest';
 
 export const createOrder = async (data) => {
     try {
-        const res = await httpDemoRequest.post('order', data);
+        const res = await httpDemoRequest.post('orders', data);
         return res;
     } catch (err) {
         console.log(err);
@@ -18,7 +18,7 @@ export const createOrderDetail = async (data) => {
     }
 };
 
-export const getProducts = async (url = 'products') => {
+export const getOrder = async (url = 'orders') => {
     try {
         const res = await httpDemoRequest.get(url);
         return res;

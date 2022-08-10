@@ -5,6 +5,7 @@ function TabLink({ listTab, setTypeLink, currentTab }) {
             <ul className="tab-list">
                 {listTab.map((tab) => (
                     <li
+                        key={tab.name}
                         className={`tab-link ${currentTab === tab.url ? 'current' : ''}`}
                         onClick={() => setTypeLink(tab.url)}
                     >

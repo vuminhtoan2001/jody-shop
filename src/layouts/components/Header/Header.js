@@ -286,7 +286,7 @@ function Header() {
                     <Search />
                     <div className="header-tool">
                         <div className="user user-hover hide-on-mobile-tablet">
-                            <Link to="/log-in" className="user_login">
+                            <Link to="/login" className="user_login">
                                 <img src={imgs.user} alt="" />
                             </Link>
                             {currentUser ? (
@@ -295,7 +295,7 @@ function Header() {
                                         <p className="user-name">Vũ Minh Toán</p>
                                     </li>
                                     <li className="user-list__item">
-                                        <Link to="/log-out" className="user-list__item-link">
+                                        <Link to="/logout" className="user-list__item-link">
                                             Đăng xuất
                                         </Link>
                                     </li>

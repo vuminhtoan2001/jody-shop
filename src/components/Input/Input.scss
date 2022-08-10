@@ -40,6 +40,14 @@
 .form-field {
 	position: relative;
 	margin-bottom: 16px;
+
+	svg{
+		position: absolute;
+		top: 13px;
+		right: 8px;
+		color: rgb(75, 74, 74);
+		cursor: pointer;
+	}
 }
 .form-field.invalid {
 	margin-bottom: 30px;
