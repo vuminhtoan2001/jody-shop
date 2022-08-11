@@ -8,18 +8,19 @@ function Input(props) {
         placeholder = ' ',
         label,
         type,
+        value,
         handleChange,
         error,
         fontIcon,
         handleShowHidePassword,
     } = props;
-
     return (
-        <div className={`form-field ${error && 'invalid'}`}>
+        <div className={`form-field ${className ?? className} ${error && 'invalid'}`}>
             <input
                 type={type || 'text'}
                 className={`form-input ${className ?? className}`}
                 id={name}
+                value={value}
                 name={name}
                 placeholder={placeholder}
                 onChange={handleChange}

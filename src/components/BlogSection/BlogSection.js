@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import HomeTitleSection from '~/components/HomeTitleSection';
 import BlogItem from '~/components/BlogItem';
 import { Slider } from '~/components/Slider';
 import './BlogSection.scss';
 
-function BlogSection() {
+function BlogSection({ blogTitle }) {
     function SampleNextArrow(props) {
         const { className, onClick } = props;
         return <div className={className} onClick={onClick} />;
@@ -42,7 +43,7 @@ function BlogSection() {
     };
     return (
         <div className="main__section-blog">
-            <HomeTitleSection>#yodylove</HomeTitleSection>
+            <HomeTitleSection>{blogTitle || '#yodylove'}</HomeTitleSection>
             <div className="grid wide">
                 <Slider settings={settings} className="section-blog-list slide-arrow row">
                     <BlogItem />
@@ -52,9 +53,9 @@ function BlogSection() {
                     <BlogItem />
                     <BlogItem />
                 </Slider>
-                <a href className="btn-more col l-4 l-o-4 m-12 c-12">
+                <Link to="/news" className="btn-more col l-4 l-o-4 m-12 c-12">
                     Xem thêm
-                </a>
+                </Link>
             </div>
         </div>
         // end

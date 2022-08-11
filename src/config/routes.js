@@ -5,6 +5,7 @@ const routes = {
     signIn: '/login',
     signUp: '/register',
     news: '/news',
+    newsDetail: '/news/:id',
     cart: '/cart',
     checkout: '/checkout',
 };

@@ -1,0 +1,96 @@
+.news-detail {
+	width: 1100px;
+	padding: 30px 30px !important;
+	background-color: var(--white-color);
+}
+.news-detail__img-main {
+	margin-bottom: 10px;
+}
+.news-detail__title {
+	font-size: 3.2rem;
+	line-height: 1.4;
+	font-weight: 600;
+	color: #22215b;
+	margin-bottom: 10px;
+}
+.time-post {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	line-height: 32px;
+	font-size: 1.6rem;
+}
+.table-of-content {
+	background: #f8f8f8;
+	padding: 20px;
+	margin: 20px 0;
+	ol {
+		padding-left: 5px;
+		font-size: 1.4rem;
+		li {
+			color: var(--primary-color);
+			a {
+				color: var(--primary-color);
+				line-height: 24px;
+			}
+			ol {
+				margin-left: 12px;
+			}
+		}
+	}
+}
+.table-of-content__title {
+	font-size: 1.6rem;
+}
+.text-advice {
+	font-size: 1.4rem;
+	color: var(--text-color);
+	font-weight: 600;
+	font-style: italic;
+	line-height: 1.4;
+	margin-bottom: 20px;
+}
+.news-detail__content {
+	h2 {
+		font-size: 2rem;
+		color: var(--text-color);
+		margin-bottom: 16px;
+	}
+	p {
+		font-size: 1.4rem;
+		color: var(--text-color);
+		margin-bottom: 12px;
+		line-height: 1.4;
+		text-align: justify;
+		i {
+			display: block;
+			padding-top: 6px;
+			text-align: center;
+			font-style: italic;
+		}
+	}
+}
+.form-signup-news__title {
+	font-size: 1.8rem;
+	font-weight: 600;
+	padding: 0 12px;
+	color: var(--primary-color);
+	margin-bottom: 20px;
+}
+.form-signup-news {
+	.form-field {
+		margin-bottom: 18px;
+	}
+}
+.form-signup__btn {
+	padding: 0 10px;
+	width: 100%;
+	margin: 0 auto;
+}
+.news-detail__right-banner {
+	margin-bottom: 10px;
+}
+.news-relate {
+	padding: 30px 0;
+	background-color: var(--white-color);
+}

@@ -276,7 +276,7 @@ function Header() {
                         </li>
                         <li className="header-nav__item">
                             <NavLink to="/news" className="header-nav__item-link">
-                                POLOYODY
+                                TIN TỨC
                             </NavLink>
                         </li>
                     </ul>

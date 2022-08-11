@@ -74,12 +74,9 @@ function SignIn() {
             setFormErrors(formValidateSignIn(formData));
             setSubmitting(true);
         } else {
-            console.log('submit', Object.keys(formErrors).length);
             if (validValuesForm()) {
                 submitForm();
             }
-            // const result = validValuesForm();
-            // setFormValidation(result);
         }
     };
 

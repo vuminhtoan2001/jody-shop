@@ -45,7 +45,6 @@ function SignUp() {
             });
         } else {
             const response = await userService.createUser(formData);
-            console.log(response.status);
             if (response.status === 201) {
                 Swal.fire({
                     position: 'center',
@@ -64,12 +63,9 @@ function SignUp() {
             setFormErrors(formValidateSignUp(formData));
             setSubmitting(true);
         } else {
-            console.log('submit', Object.keys(formErrors).length);
             if (validValuesForm()) {
                 submitForm();
             }
-            // const result = validValuesForm();
-            // setFormValidation(result);
         }
     };
 
