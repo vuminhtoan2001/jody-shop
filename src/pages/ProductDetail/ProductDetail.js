@@ -28,6 +28,7 @@ function ProductDetail() {
         // prevArrow: "<button type='button' className='gallery-img-pre'></button>",
         // nextArrow: "<button type='button' className='gallery-img-next'></button>",
     };
+
     const dispatch = useDispatch();
     const [product, setProduct] = useState();
     const [productColors, setProductColors] = useState();
@@ -41,6 +42,11 @@ function ProductDetail() {
     const carts = useSelector((state) => state.cart);
     const [isExistCart, setIsExistCart] = useState(false);
     const [qtyInput, setQtyInput] = useState(1);
+
+    const links = [
+        { name: 'Sản phẩm', path: '/products' },
+        { name: product?.name, path: `/products/${product?.id} ` },
+    ];
 
     const qtyProduct = () => {
         const productInCart = carts.find((cart) => cart.id === product.id);
@@ -125,7 +131,7 @@ function ProductDetail() {
         <>
             {product && (
                 <div className="main grid">
-                    <TitlePathLink links={['Sản phẩm', product.name]} />
+                    <TitlePathLink links={links} />
                     <div className="main__container grid wide wide-md">
                         <div className="row product-detail">
                             <div className="product-detail-left l-7 m-12 c-12">

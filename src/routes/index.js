@@ -11,6 +11,7 @@ import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
 import Cart from '~/pages/Cart';
 import Checkout from '~/pages/Checkout';
+import WishList from '~/pages/WishList';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -22,6 +23,7 @@ const publicRoutes = [
     { path: config.routes.checkout, component: Checkout, layout: BodyOnly },
     { path: config.routes.signIn, component: SignIn, layout: HeaderOnly },
     { path: config.routes.signUp, component: SignUp, layout: HeaderOnly },
+    { path: config.routes.wishList, component: WishList },
 ];
 
 const privateRoutes = [];

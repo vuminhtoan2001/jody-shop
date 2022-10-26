@@ -8,6 +8,7 @@ const routes = {
     newsDetail: '/news/:id',
     cart: '/cart',
     checkout: '/checkout',
+    wishList: '/yeu-thich',
 };
 
 export default routes;

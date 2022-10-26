@@ -3,14 +3,14 @@ import './Input.scss';
 
 function Input(props) {
     const {
-        className,
+        className = '',
         name,
         placeholder = ' ',
         label,
         type,
         value,
         handleChange,
-        error,
+        error = '',
         fontIcon,
         handleShowHidePassword,
     } = props;
@@ -18,7 +18,7 @@ function Input(props) {
         <div className={`form-field ${className ?? className} ${error && 'invalid'}`}>
             <input
                 type={type || 'text'}
-                className={`form-input ${className ?? className}`}
+                className={`form-input`}
                 id={name}
                 value={value}
                 name={name}

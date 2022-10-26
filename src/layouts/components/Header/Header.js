@@ -1,6 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faLocationDot, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { cartTotalSelector } from '~/redux/slices/selectorSlice';
+import { wishListTotalSelector } from '~/redux/slices/selectorSlice';
 
 import config from '~/config';
 import Search from '~/layouts/components/Search';
@@ -10,6 +13,8 @@ import imgs from '~/assets/imgs';
 
 function Header() {
     const currentUser = false;
+    const totalQtyCart = useSelector(cartTotalSelector);
+    const totalQtyWishList = useSelector(wishListTotalSelector);
     return (
         <header className="header">
             <div className="topbar">
@@ -316,9 +321,13 @@ function Header() {
                             )}
                         </div>
                         <div className="wishlist-header hide-on-mobile-tablet">
-                            <Link to="/wishlist" className="wishlist-header__icon">
+                            <Link to="/yeu-thich" className="wishlist-header__icon">
                                 <img src={imgs.heart} alt="" />
-                                <span className="headerWishlistCount">4</span>
+                                {totalQtyWishList > 0 ? (
+                                    <span className="headerWishlistCount">{totalQtyWishList}</span>
+                                ) : (
+                                    false
+                                )}
                             </Link>
                         </div>
                         <Cart />
@@ -346,7 +355,7 @@ function Header() {
                                     <div className="line" />
                                 </div>
                                 {/* Tab content */}
-                                <div className="mmenu-first">
+                                <div className="menu-first">
                                     <ul className="list-parent tab-pane active">
                                         <li className="list-parent_item">Sale</li>
                                         <li className="list-parent_item list-parent__has-child">
@@ -977,17 +986,27 @@ function Header() {
                                 </div>
                                 {/* menu-mobile-bottom */}
                                 <div className="nav-mobile__bottom-menu">
-                                    <a href className="nav-mobile__bottom-link">
-                                        <img src="./assets/img/home_icon.png" alt="" />
-                                    </a>
-                                    <a href className="nav-mobile__bottom-link">
-                                        <img src="./assets/img/heart.svg" alt="" />
-                                        <span className="headerWishlistCount">3</span>
-                                    </a>
-                                    <a href className="nav-mobile__bottom-link">
-                                        <img src="./assets/img/cart.svg" alt="" />
-                                        <span className="header-cart__count-item in-nav-mobile">2</span>
-                                    </a>
+                                    <Link to="/" className="nav-mobile__bottom-link">
+                                        <img src={imgs.home_icon} alt="" />
+                                    </Link>
+                                    <Link to="/yeu-thich" className="nav-mobile__bottom-link">
+                                        <img src={imgs.heart} alt="" />
+                                        {totalQtyWishList > 0 ? (
+                                            <span className="headerWishlistCount">{totalQtyWishList}</span>
+                                        ) : (
+                                            false
+                                        )}
+                                    </Link>
+                                    <Link to="/cart" className="nav-mobile__bottom-link">
+                                        <img src={imgs.cart} alt="" />
+                                        {totalQtyCart > 0 ? (
+                                            <span className="header-cart__count-item in-nav-mobile">
+                                                {totalQtyCart}
+                                            </span>
+                                        ) : (
+                                            false
+                                        )}
+                                    </Link>
                                     <a href className="nav-mobile__bottom-link">
                                         <img src="./assets/img/user.svg" alt="" />
                                     </a>

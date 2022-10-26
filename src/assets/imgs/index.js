@@ -9,6 +9,7 @@ const imgs = {
     cart: require('./cart.svg').default,
     hearted_ico: require('./hearted_ico.svg').default,
     heart_ico: require('./heart_ico.svg').default,
+    home_icon: require('./home_icon.png'),
     //
     aopolo_nu_vang: require('./aopolo_nu_vang.jpg'),
     // Slider

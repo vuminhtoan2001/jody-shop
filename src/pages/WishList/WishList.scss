@@ -1,0 +1,100 @@
+.wishlist-body {
+    background-color: #f8f8f8;
+}
+.wishlist-main {
+    justify-content: space-between;
+}
+.wishlist-sidebar {
+    background-color: var(--white-color);
+    padding: 0;
+    width: 290px;
+    min-height: 627px;
+    margin-right: 32px;
+    ul {
+        li {
+            a {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+.wishlist-content {
+    flex: 1;
+    background-color: var(--white-color);
+}
+.wishlist-sidebar__block-login {
+    padding: 30px 18px;
+    text-align: center;
+    img {
+        display: block;
+        margin: 0 auto 20px;
+    }
+}
+.forward-slash,
+.wishlist-user {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+.wishlist-user {
+    &:hover {
+        color: var(--primary-color);
+    }
+    &:last-child {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 6px 12px;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        border-radius: 12px;
+    }
+}
+.wish-list__login-title-info {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    line-height: 40px;
+    padding: 0 0 0 20px;
+    i {
+        font-size: 2rem;
+        min-width: 30px;
+        text-align: center;
+        margin-right: 6px;
+    }
+}
+.wish-list__login-title-info:hover,
+.wish-list__login-title-info.active {
+    background-color: #feeeea;
+}
+.wish-list__login-title-info:hover i,
+.wish-list__login-title-info.active i {
+    color: #f57d65;
+}
+.wish-list__login-title-info:hover span,
+.wish-list__login-title-info.active span {
+    color: var(--primary-color);
+}
+.wishlist-content__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 1.6rem;
+    padding: 18px 30px;
+    border-bottom: 1px solid #dde1ef;
+    color: #7a7a9d;
+}
+.wishlist-content__title-text {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.wishlist-content__list {
+    padding: 20px 30px;
+}
+
+.wishlist-empty {
+    margin-top: 60px;
+    padding-top: 100px;
+    background: url(https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/no-heart.png) top center no-repeat;
+    color: #7a7a9d;
+    text-align: center;
+}

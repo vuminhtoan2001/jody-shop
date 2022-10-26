@@ -18,7 +18,7 @@ function Footer() {
                         </p>
                         <h4 className="footer__title">đăng ký nhận thông tin</h4>
                         <div className="footer__form">
-                            <form action className="subcribe-form row">
+                            <form className="subcribe-form row">
                                 <input
                                     type="text"
                                     className="subcribe-form__input col l-8 m-6 c-8"

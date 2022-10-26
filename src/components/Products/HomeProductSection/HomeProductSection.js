@@ -61,7 +61,7 @@ function HomeProductSection() {
                 </div>
                 <div className="swiper-products">
                     <div className="swiper-products__list row" id="tab-content">
-                        {products.length ? (
+                        {products?.length ? (
                             products.map((product) => (
                                 <ProductItem key={product.id} className="col l-2-4 m-3 c-6" productItem={product} />
                             ))

@@ -26,7 +26,7 @@ function Button({ to, href, primary, children, onClick, ...passProps }) {
 
     return (
         <Comp className={classes} {...props}>
-            <span>{children}</span>
+            {children}
         </Comp>
     );
 }

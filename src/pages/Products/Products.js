@@ -11,6 +11,7 @@ import ProductItem from '~/components/Products/ProductItem';
 import * as productService from '~/services/productService';
 
 function Products() {
+    const links = [{ name: 'Sản phẩm', path: '/products' }];
     const [filters, dispatch] = useReducer(reducer, initState);
     const [products, setProducts] = useState([]);
     const [sortProducts, setSortProducts] = useState(0);
@@ -128,7 +129,7 @@ function Products() {
                 <b>498k</b>
                 sẽ được miễn phí vận chuyển
             </div>
-            <TitlePathLink links={['Sản phẩm']} />
+            <TitlePathLink links={links} />
             <div className="main__container grid wide">
                 <div className="row">
                     <SideBar className="col l-3 m-0 c-0" onClickItem={handleClickItem} />

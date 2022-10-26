@@ -39,19 +39,6 @@ const cartSlice = createSlice({
             }
         },
         removeCart(state, { payload }) {
-            Swal.fire({
-                title: 'Bạn muốn xóa sản phẩm này ra khỏi giỏ hàng?',
-                // text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#fcaf17 ',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire('Deleted!', 'Sản phẩm đã được xóa khỏi giỏ hàng', 'success');
-                }
-            });
             return state.filter((cartItem) => cartItem.id !== payload);
         },
         increment(state, action) {

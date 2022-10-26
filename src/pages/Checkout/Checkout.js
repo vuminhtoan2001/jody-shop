@@ -154,28 +154,24 @@ function Checkout() {
                                 </div>
                                 <div className="checkoutForm__info-content">
                                     <Input
-                                        className="form-input"
                                         label="Họ và tên"
                                         name="name"
                                         handleChange={handleChange}
                                         error={formErrors && formErrors.name}
                                     />
                                     <Input
-                                        className="form-input"
                                         label="Số điện thoại"
                                         name="phone"
                                         handleChange={handleChange}
                                         error={formErrors && formErrors.phone}
                                     />
                                     <Input
-                                        className="form-input"
                                         label="Email"
                                         name="email"
                                         handleChange={handleChange}
                                         error={formErrors && formErrors.email}
                                     />
                                     <Input
-                                        className="form-input"
                                         label="Địa chỉ"
                                         name="address"
                                         handleChange={handleChange}

@@ -17,13 +17,13 @@ function SliderSection() {
         autoplaySpeed: 3500,
         dots: true,
         appendDots: (dots) => (
-            <div class="dot-out">
-                <div class="dot-in">{dots}</div>
+            <div className="dot-out">
+                <div className="dot-in">{dots}</div>
             </div>
         ),
         customPaging: () => (
-            <div class="dot-out">
-                <div class="dot-in"></div>
+            <div className="dot-out">
+                <div className="dot-in"></div>
             </div>
         ),
     };

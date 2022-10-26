@@ -1,22 +1,34 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleWishList } from '~/redux/slices/wishListSlice';
 
 import './ProductItem.scss';
 import Image from '~/components/Image';
 import images from '~/assets/imgs';
 
 function ProductItem({ className, productItem }) {
+    const dispatch = useDispatch();
+    const wishList = useSelector((state) => state.wishList);
+
     const { id, name, featured_image, compare_at_price_varies, price, compare_at_price_max, variants } = productItem;
     let dataSale;
     const RefImage = useRef();
     const [optionsWatch, setOptionsWatch] = useState([]);
-    const [favorite, setFavorite] = useState(false);
+    const [favorite, setFavorite] = useState(() => {
+        const find = wishList.find((item) => item.id === id);
+        return find ? true : false;
+    });
     const formatToCurrency = (price) => {
         return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     };
 
     const handleImage = (image) => {
         RefImage.current.src = image;
+    };
+    const handleFavorite = () => {
+        setFavorite(!favorite);
+        dispatch(handleWishList(productItem));
     };
 
     useEffect(() => {
@@ -52,7 +64,7 @@ function ProductItem({ className, productItem }) {
                     className={`swiper-products_thubnail__favorite ${
                         favorite && 'swiper-products_thubnail__favorite-liked'
                     }`}
-                    onClick={() => setFavorite(!favorite)}
+                    onClick={handleFavorite}
                 >
                     <Image src={images.hearted_ico} className="icon-heart icon-heart-fill" />
                     <Image src={images.heart_ico} className="icon-heart icon-heart-empty" />
